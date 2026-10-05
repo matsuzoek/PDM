@@ -1,43 +1,44 @@
 <title>町の便利屋 トップページ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700&display=swap">
 <style>
-/* Layout: スマホ1カラム（最大560px）。地域の店のチラシのように、写真・電話番号・料金を大きく。上から CTA → キービジュアル → 事例 */
+/* Layout: スマホ1カラム（最大560px）。共感 → 解決 → 実例 → 安心 → 料金 → 不安の解消 → 相談 の順に読み進め、決めやすい場所ごとに相談ボタンを置く */
 :root {
-  --bg: #FFFFFF;
-  --band: #F1F4F2;
-  --ink: #1E2623;
-  --muted: #4C5753;
-  --rule: #D3DAD7;
-  --green: #1F5C4F;
-  --green-ink: #1F5C4F;
-  --green-shadow: #123A31;
-  --yellow: #F2C230;
-  --yellow-soft: #FFF6D6;
-  --on-yellow: #1E2623;
-  --red: #C23A22;
+  --bg: #FFFCFA;
+  --blush: #FBF0ED;
+  --sage: #EEF3EE;
+  --ink: #3A2F2D;
+  --muted: #6B5B57;
+  --rule: #EBDDD8;
+  --rose: #C24D5C;
+  --rose-ink: #B03F4F;
+  --rose-shadow: #8E3341;
+  --rose-soft: #FCE6E6;
+  --sage-ink: #4C765F;
   --line: #05994A;
   --line-shadow: #04692F;
   --on-fill: #FFFFFF;
-  --photo: #DCE3E0;
+  --photo: #EFE4E0;
+  --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", sans-serif;
   --font: "BIZ UDPGothic", "Hiragino Sans", "Meiryo", sans-serif;
   --fs: 1.125rem;
   --fs-s: 1rem;
   --tap: 3.75rem;
+  --r: 14px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #131917; --band: #1B2320; --ink: #EDF2F0; --muted: #B9C4C0; --rule: #33413C;
-    --green: #2A7564; --green-ink: #86CDB9; --green-shadow: #0C2620; --yellow: #F2C230; --yellow-soft: #3A3218;
-    --on-yellow: #1E2623; --red: #FF8A70; --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #2A3430;
+    --bg: #1D1716; --blush: #2A201F; --sage: #1F2622; --ink: #F5ECEA; --muted: #CDBDB8; --rule: #3E3230;
+    --rose: #C24D5C; --rose-ink: #F29AA5; --rose-shadow: #6E2732; --rose-soft: #3A2427; --sage-ink: #9CC7AE;
+    --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #33292A;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #131917; --band: #1B2320; --ink: #EDF2F0; --muted: #B9C4C0; --rule: #33413C;
-  --green: #2A7564; --green-ink: #86CDB9; --green-shadow: #0C2620; --yellow: #F2C230; --yellow-soft: #3A3218;
-  --on-yellow: #1E2623; --red: #FF8A70; --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #2A3430;
+  --bg: #1D1716; --blush: #2A201F; --sage: #1F2622; --ink: #F5ECEA; --muted: #CDBDB8; --rule: #3E3230;
+  --rose: #C24D5C; --rose-ink: #F29AA5; --rose-shadow: #6E2732; --rose-soft: #3A2427; --sage-ink: #9CC7AE;
+  --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #33292A;
   color-scheme: dark;
 }
 
@@ -49,155 +50,159 @@ body {
   padding-block: 0 calc(6.5rem + env(safe-area-inset-bottom, 0px));
 }
 .page { max-width: 35rem; margin-inline: auto; }
-h1, h2, h3 { line-height: 1.45; margin: 0; text-wrap: balance; font-weight: 700; }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 700; line-height: 1.5; }
+h1, h2 { font-family: var(--display); }
 p { margin: 0; }
 img { display: block; width: 100%; height: auto; max-width: 100%; background: var(--photo); color: var(--muted); font-size: var(--fs-s); }
-a:focus-visible, summary:focus-visible { outline: 4px solid var(--yellow); outline-offset: 3px; }
+a:focus-visible, summary:focus-visible { outline: 4px solid var(--rose); outline-offset: 3px; }
+.nw { display: inline-block; }
 
-/* 帯（セクションの背景を交互に） */
-.band { margin-inline: -16px; padding: 2.5rem 16px; }
-.band.tint { background: var(--band); }
+/* セクション（背景色で区切る） */
+.band { margin-inline: -16px; padding: 2.75rem 16px; }
+.band.blush { background: var(--blush); }
+.band.sage { background: var(--sage); }
 .band > .in { max-width: 35rem; margin-inline: auto; display: grid; gap: 1.25rem; }
-
-/* 見出し：左寄せ＋下に黄色の太線 */
-h2 { font-size: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--rule); position: relative; }
-h2::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 4rem; height: 4px; background: var(--yellow); }
+.kicker { font-size: var(--fs-s); font-weight: 700; color: var(--rose-ink); }
+h2 { font-size: 1.625rem; }
 .lead { color: var(--muted); }
 
-/* ① ヘッダー（1行にまとめる） */
-.header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding-block: 0.75rem; }
-.sitename { font-weight: 700; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--green-ink); line-height: 1.2; }
-.sitename small { display: block; font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; line-height: 1.4; margin-top: 0.125rem; }
-.status { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.875rem; font-weight: 700; line-height: 1.35; text-align: right; }
-.status::before { content: ""; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: var(--line); flex: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--line) 25%, transparent); }
-.status.closed::before { background: var(--muted); box-shadow: none; }
-
-/* ② CTA */
-.cta { display: grid; gap: 0.625rem; padding-block: 0.25rem 1rem; }
-.btn { display: flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: var(--tap); padding: 0.75rem 1rem; border-radius: 6px; color: var(--on-fill); text-decoration: none; font-weight: 700; font-size: 1.25rem; line-height: 1.3; }
+/* ボタン */
+.btn { display: flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: var(--tap); padding: 0.75rem 1rem; border-radius: 999px; color: var(--on-fill); text-decoration: none; font-weight: 700; font-size: 1.25rem; line-height: 1.3; }
 .btn svg { width: 1.75rem; height: 1.75rem; flex: none; }
-.btn-tel { background: var(--green); flex-direction: column; gap: 0.125rem; padding-block: 0.625rem 0.75rem; box-shadow: 0 3px 0 var(--green-shadow); }
-.btn-tel .row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
-.btn-tel .num { font-size: 2rem; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
-.btn-tel .free { background: var(--yellow); color: var(--on-yellow); font-size: 0.875rem; padding: 0.125rem 0.5rem; border-radius: 3px; }
-.btn-tel .sub { font-size: var(--fs-s); font-weight: 400; }
+.btn small { display: block; font-size: 0.875rem; font-weight: 400; }
+.btn-tel { background: var(--rose); box-shadow: 0 3px 0 var(--rose-shadow); }
+.btn-tel .num { font-size: 1.75rem; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; display: block; }
+.btn-tel .free { display: inline-block; background: var(--on-fill); color: #B03F4F; font-size: 0.8125rem; padding: 0 0.5rem; border-radius: 999px; margin-right: 0.375rem; font-weight: 700; }
 .btn-line { background: var(--line); box-shadow: 0 3px 0 var(--line-shadow); }
-.btn-line small { display: block; font-size: 0.875rem; font-weight: 400; }
+.cta-pair { display: grid; gap: 0.75rem; }
+.cta-note { text-align: center; font-size: var(--fs-s); color: var(--muted); }
 
-/* ③ キービジュアル：写真の上にコピーを重ねる */
-.kv { margin-inline: -16px; }
-.kv-photo { position: relative; }
-.kv-photo img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 20%; }
-.kv-photo::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to bottom, rgb(10 30 25 / 0), rgb(10 30 25 / 0.82)); pointer-events: none; }
-.kv-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 0 16px 1rem; color: #FFFFFF; text-shadow: 0 1px 8px rgb(0 0 0 / 0.35); }
-.kv-copy .area-badge { display: inline-block; background: var(--yellow); color: var(--on-yellow); text-shadow: none; font-weight: 700; font-size: 0.875rem; padding: 0.125rem 0.625rem; border-radius: 3px; margin-bottom: 0.5rem; }
-.kv-copy h1 { font-size: 1.875rem; line-height: 1.35; letter-spacing: 0.02em; }
-.nw { display: inline-block; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--green); color: var(--on-fill); }
-.fact { padding: 0.75rem 0.25rem; text-align: center; line-height: 1.35; font-size: 0.875rem; }
-.fact + .fact { border-left: 1px solid rgb(255 255 255 / 0.25); }
-.fact b { display: block; font-size: 1.25rem; color: var(--yellow); letter-spacing: 0.02em; }
-.can { padding: 0.875rem 16px 0; display: grid; gap: 0.5rem; }
-.can p { font-weight: 700; font-size: var(--fs-s); }
-.can ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem; }
-.can li { border: 1px solid var(--rule); border-radius: 999px; padding: 0.125rem 0.75rem; font-size: 0.9375rem; background: var(--band); }
+/* ① ヘッダー */
+.header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding-block: 0.75rem; }
+.sitename { font-family: var(--display); font-size: 1.5rem; letter-spacing: 0.06em; color: var(--rose-ink); line-height: 1.2; }
+.sitename small { display: block; font-family: var(--font); font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--muted); line-height: 1.4; margin-top: 0.125rem; }
+.status { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.875rem; font-weight: 700; line-height: 1.35; text-align: right; }
+.status::before { content: ""; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: var(--line); flex: none; }
+.status.closed::before { background: var(--muted); }
 
-/* ④ 事例 */
-.cases { display: grid; gap: 1.5rem; }
-.case { border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--bg); }
-.case img { aspect-ratio: 4 / 3; object-fit: cover; }
-.case .body { padding: 1rem 1.125rem 1.25rem; display: grid; gap: 0.625rem; }
-.tag { justify-self: start; font-size: 0.875rem; font-weight: 700; color: var(--green-ink); border: 1px solid currentColor; border-radius: 3px; padding: 0 0.5rem; }
-.case h3 { font-size: 1.25rem; }
-.spec { width: 100%; border-collapse: collapse; font-size: var(--fs-s); }
-.spec th, .spec td { border-top: 1px solid var(--rule); padding: 0.5rem 0.25rem; text-align: left; vertical-align: top; }
-.spec th { width: 5.5em; color: var(--muted); font-weight: 400; white-space: nowrap; }
-.spec .yen { color: var(--red); font-weight: 700; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
-.case blockquote { margin: 0; background: var(--yellow-soft); padding: 0.75rem 1rem; border-radius: 4px; font-size: var(--fs-s); }
-.case blockquote::before { content: "お客様の声　"; font-weight: 700; }
-.more { display: flex; align-items: center; justify-content: center; min-height: var(--tap); border: 2px solid var(--green-ink); border-radius: 6px; color: var(--green-ink); font-weight: 700; text-decoration: none; }
+/* ② ファーストビュー：写真 → コピー → 強み → 相談ボタン */
+.fv { display: grid; gap: 1rem; padding-bottom: 1.75rem; }
+.fv-photo { position: relative; margin-inline: -16px; }
+.fv-photo img { aspect-ratio: 16 / 11; object-fit: cover; object-position: 50% 25%; }
+.fv-badge { position: absolute; left: 16px; bottom: -1.1rem; background: var(--bg); color: var(--rose-ink); font-weight: 700; font-size: 0.9375rem; padding: 0.375rem 0.875rem; border-radius: 999px; box-shadow: 0 2px 10px rgb(80 40 40 / 0.15); }
+.fv-copy { padding-top: 1rem; display: grid; gap: 0.375rem; }
+.fv-copy h1 { font-size: 1.875rem; line-height: 1.45; }
+.fv-copy p { color: var(--muted); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+.fact { background: var(--blush); border-radius: 10px; padding: 0.625rem 0.25rem; text-align: center; line-height: 1.35; font-size: 0.875rem; }
+.fact b { display: block; font-size: 1.1875rem; color: var(--rose-ink); }
 
-/* ⑤ 困りごと */
+/* ③ 共感 */
+.pains { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; }
+.pains li { background: var(--bg); border-radius: 10px; padding: 0.875rem 1rem 0.875rem 3rem; position: relative; font-weight: 700; }
+.pains li::before { content: ""; position: absolute; left: 1rem; top: 1.15rem; width: 1.25rem; height: 1.25rem; border-radius: 4px; border: 2px solid var(--rose); }
+.pains li::after { content: ""; position: absolute; left: 1.42rem; top: 1.2rem; width: 0.4rem; height: 0.75rem; border: solid var(--rose); border-width: 0 3px 3px 0; transform: rotate(45deg); }
+.answer { text-align: center; font-family: var(--display); font-size: 1.375rem; line-height: 1.5; }
+.answer::before { content: "▼"; display: block; color: var(--rose); font-size: 1rem; margin-bottom: 0.5rem; }
+.answer em { font-style: normal; color: var(--rose-ink); }
+
+/* ④ 頼めること */
 .tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; list-style: none; margin: 0; padding: 0; }
-.tile { display: block; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; color: var(--ink); text-decoration: none; background: var(--bg); height: 100%; }
+.tile { display: block; border-radius: var(--r); overflow: hidden; color: var(--ink); text-decoration: none; background: var(--bg); border: 1px solid var(--rule); height: 100%; }
 .tile img { aspect-ratio: 1; object-fit: cover; }
-.tile span { display: flex; align-items: center; justify-content: space-between; gap: 0.25rem; min-height: 3.5rem; padding: 0.5rem 0.75rem; font-weight: 700; line-height: 1.35; font-size: 1.0625rem; }
-.tile span::after { content: "›"; color: var(--green-ink); font-size: 1.5rem; }
-.tile.other { display: grid; align-content: center; justify-items: center; text-align: center; gap: 0.5rem; padding: 1rem; background: var(--yellow-soft); }
-.tile.other b { font-size: 2.5rem; line-height: 1; color: var(--green-ink); }
-.tile.other span { padding: 0; min-height: 0; }
+.tile span { display: flex; align-items: center; justify-content: space-between; gap: 0.25rem; min-height: 3.25rem; padding: 0.5rem 0.75rem; font-weight: 700; line-height: 1.35; font-size: 1.0625rem; }
+.tile span::after { content: "›"; color: var(--rose-ink); font-size: 1.5rem; }
+.tile.other { display: grid; align-content: center; justify-items: center; text-align: center; gap: 0.5rem; padding: 1rem; background: var(--rose-soft); border-color: transparent; }
+.tile.other b { font-family: var(--display); font-size: 2.25rem; line-height: 1; color: var(--rose-ink); }
+.tile.other span { padding: 0; min-height: 0; font-size: var(--fs-s); }
 .tile.other span::after { content: none; }
 
-/* ⑥ 料金 */
-.price { border: 3px solid var(--green); border-radius: 6px; overflow: hidden; }
-.price-head { background: var(--green); color: var(--on-fill); padding: 0.5rem 1rem; font-weight: 700; }
+/* ⑤ 事例 */
+.cases { display: grid; gap: 1.25rem; }
+.case { border-radius: var(--r); overflow: hidden; background: var(--bg); border: 1px solid var(--rule); }
+.case img { aspect-ratio: 16 / 10; object-fit: cover; }
+.case .body { padding: 1rem 1.125rem 1.25rem; display: grid; gap: 0.5rem; }
+.tag { justify-self: start; font-size: 0.875rem; font-weight: 700; color: var(--sage-ink); background: var(--sage); border-radius: 999px; padding: 0 0.75rem; }
+.case h3 { font-size: 1.25rem; }
+.case .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; font-size: var(--fs-s); color: var(--muted); border-top: 1px dashed var(--rule); padding-top: 0.5rem; }
+.case .yen { color: var(--rose-ink); font-weight: 700; font-size: 1.375rem; font-variant-numeric: tabular-nums; }
+.case .yen small { font-size: 0.875rem; font-weight: 400; color: var(--muted); }
+.case blockquote { margin: 0; background: var(--blush); padding: 0.75rem 1rem; border-radius: 10px; font-size: var(--fs-s); }
+.more { display: flex; align-items: center; justify-content: center; min-height: 3.25rem; border: 2px solid var(--rose); border-radius: 999px; color: var(--rose-ink); font-weight: 700; text-decoration: none; }
+
+/* 途中の相談ボタン */
+.mid-cta { background: var(--bg); border: 2px solid var(--rose-soft); border-radius: var(--r); padding: 1.25rem 1rem; display: grid; gap: 0.75rem; }
+.mid-cta p { text-align: center; font-weight: 700; }
+
+/* ⑥ 安心の理由 */
+.reasons { display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0; counter-reset: r; }
+.reason { background: var(--bg); border-radius: var(--r); overflow: hidden; counter-increment: r; }
+.reason img { aspect-ratio: 16 / 9; object-fit: cover; }
+.reason .txt { padding: 1rem 1.125rem 1.25rem; display: grid; gap: 0.375rem; }
+.reason .no { font-family: var(--display); color: var(--rose-ink); font-size: 0.9375rem; }
+.reason .no::before { content: "理由 " counter(r); }
+.reason h3 { font-family: var(--display); font-size: 1.3125rem; }
+.reason p { color: var(--muted); font-size: var(--fs-s); }
+
+/* ⑦ 料金 */
+.price { background: var(--bg); border-radius: var(--r); overflow: hidden; border: 2px solid var(--rose-soft); }
 .price-main { padding: 1.25rem 1rem; display: grid; gap: 1rem; }
 .pline { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; border-bottom: 1px dashed var(--rule); padding-bottom: 0.75rem; }
 .pline .k { font-weight: 700; min-width: 0; }
 .pline .k small { display: block; font-weight: 400; font-size: 0.875rem; color: var(--muted); }
-.pline .v { color: var(--red); font-weight: 700; font-size: 2rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.pline .v { font-family: var(--display); color: var(--rose-ink); font-size: 2.125rem; line-height: 1.2; font-variant-numeric: tabular-nums; }
 .pline .v small { font-size: 1rem; }
-.promise { background: var(--yellow-soft); padding: 0.875rem 1rem; font-weight: 700; border-radius: 4px; }
+.promise { background: var(--sage); color: var(--ink); padding: 0.875rem 1rem; font-weight: 700; border-radius: 10px; }
 .ptable { width: 100%; border-collapse: collapse; font-size: var(--fs-s); }
 .ptable caption { text-align: left; font-weight: 700; padding-bottom: 0.25rem; }
-.ptable th, .ptable td { border: 1px solid var(--rule); padding: 0.5rem 0.75rem; text-align: left; font-weight: 400; }
+.ptable th, .ptable td { border-bottom: 1px solid var(--rule); padding: 0.5rem 0.25rem; text-align: left; font-weight: 400; }
 .ptable td { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.ptable tr:nth-child(odd) th, .ptable tr:nth-child(odd) td { background: var(--band); }
 .note { font-size: 0.875rem; color: var(--muted); }
 
-/* ⑦ スタッフ */
-.staff img { aspect-ratio: 3 / 2; object-fit: cover; border-radius: 6px; }
-.checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.875rem; }
-.checks li { padding-left: 2rem; position: relative; }
-.checks li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 1.25rem; height: 1.25rem; border-radius: 3px; background: var(--green); }
-.checks li::after { content: ""; position: absolute; left: 0.42rem; top: 0.42em; width: 0.4rem; height: 0.7rem; border: solid var(--on-fill); border-width: 0 3px 3px 0; transform: rotate(45deg); }
-.checks b { display: block; }
-.checks span { color: var(--muted); font-size: var(--fs-s); }
-
-/* ⑧ 流れ */
-.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
-.step { border: 1px solid var(--rule); border-radius: 6px; padding: 1rem; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.875rem; background: var(--bg); }
-.step .no { grid-row: span 2; align-self: start; background: var(--green); color: var(--on-fill); font-weight: 700; font-size: 0.8125rem; text-align: center; line-height: 1.2; padding: 0.375rem 0.5rem; border-radius: 4px; }
-.step .no b { display: block; font-size: 1.5rem; }
-.step h3 { font-size: 1.1875rem; }
-.step p { color: var(--muted); font-size: var(--fs-s); }
-.step img { grid-column: 1 / -1; margin-top: 0.75rem; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 4px; }
-.arrow { text-align: center; color: var(--green-ink); line-height: 1; font-size: 1.25rem; }
-
-/* ⑨ 声 */
+/* ⑧ 声 */
 .voices { display: grid; gap: 0.75rem; }
-.voice { border-left: 4px solid var(--yellow); background: var(--bg); padding: 0.75rem 1rem; }
-.voice .who { font-size: 0.875rem; color: var(--muted); margin-top: 0.25rem; }
+.voice { background: var(--bg); border-radius: var(--r); padding: 1rem 1.125rem; position: relative; }
+.voice::before { content: "“"; font-family: var(--display); color: var(--rose); font-size: 2.5rem; line-height: 1; position: absolute; top: 0.25rem; right: 1rem; opacity: 0.5; }
+.voice .who { font-size: 0.875rem; color: var(--muted); margin-top: 0.375rem; }
+
+/* ⑨ 流れ */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.step { display: grid; grid-template-columns: 3rem 1fr; gap: 0 1rem; padding-bottom: 1.25rem; position: relative; }
+.step:not(:last-child)::after { content: ""; position: absolute; left: 1.4rem; top: 3.25rem; bottom: 0.25rem; width: 3px; background: var(--rose-soft); border-radius: 2px; }
+.step .no { width: 3rem; height: 3rem; border-radius: 50%; background: var(--rose); color: var(--on-fill); font-family: var(--display); font-size: 1.375rem; display: grid; place-items: center; }
+.step h3 { font-size: 1.1875rem; padding-top: 0.5rem; }
+.step p { color: var(--muted); font-size: var(--fs-s); }
 
 /* ⑩ FAQ */
 .faq { display: grid; gap: 0.5rem; }
-details { border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); }
+details { border-radius: 10px; background: var(--bg); border: 1px solid var(--rule); }
 summary { list-style: none; cursor: pointer; min-height: var(--tap); padding: 0.875rem 3rem 0.875rem 1rem; position: relative; display: flex; align-items: center; font-weight: 700; }
 summary::-webkit-details-marker { display: none; }
-summary::before { content: "Q"; color: var(--green-ink); font-size: 1.25rem; margin-right: 0.625rem; }
-summary::after { content: "＋"; position: absolute; right: 1rem; color: var(--green-ink); font-size: 1.25rem; }
+summary::before { content: "Q"; font-family: var(--display); color: var(--rose-ink); font-size: 1.25rem; margin-right: 0.625rem; }
+summary::after { content: "＋"; position: absolute; right: 1rem; color: var(--rose-ink); font-size: 1.25rem; }
 details[open] summary::after { content: "－"; }
 details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 .area { font-size: var(--fs-s); }
 .area b { display: block; margin-bottom: 0.25rem; }
 .wards { color: var(--muted); }
 
-/* ⑪ 最後のCTA */
-.end { display: grid; gap: 0.875rem; }
+/* ⑪ 最後の相談 */
+.end { display: grid; gap: 1rem; }
 .end .op { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; align-items: center; }
 .end .op img { aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
+.end h2 { font-size: 1.5rem; }
 
-/* ⑫ フッター */
+/* フッター */
 .footer { padding-block: 1.5rem; display: grid; gap: 0.75rem; font-size: var(--fs-s); color: var(--muted); }
 .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
 .footer a { color: var(--ink); }
 
-/* 固定バー（上の電話ボタンが見えている間は隠す） */
+/* 固定バー（上の相談ボタンが見えている間は隠す） */
+.fixed-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--bg); border-top: 1px solid var(--rule); padding: 0.625rem 16px calc(0.625rem + env(safe-area-inset-bottom, 0px)); transition: transform 0.25s ease; }
 .fixed-bar.is-hidden { transform: translateY(110%); }
-@media (prefers-reduced-motion: reduce) { .fixed-bar { transition: none; } }
-.fixed-bar { transition: transform 0.25s ease; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--bg); border-top: 1px solid var(--rule); padding: 0.625rem 16px calc(0.625rem + env(safe-area-inset-bottom, 0px)); }
 .fixed-bar .inner { max-width: 35rem; margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
-.fixed-bar .btn { min-height: 3.5rem; flex-direction: row; padding-block: 0.5rem; font-size: 1.1875rem; }
+.fixed-bar .btn { min-height: 3.5rem; font-size: 1.1875rem; padding-block: 0.5rem; }
+@media (prefers-reduced-motion: reduce) { .fixed-bar { transition: none; } }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -206,110 +211,56 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 </svg>
 
 <div class="page">
+
   <!-- ① ヘッダー -->
   <header class="header">
     <div class="sitename">町の便利屋<small>東京23区・相談とお見積もりは無料</small></div>
     <div class="status" id="status">毎日 9時〜20時<br>受付</div>
   </header>
 
-  <!-- ② CTA -->
-  <section class="cta" id="top-cta" aria-label="ご相談">
-    <a class="btn btn-tel" href="tel:0120000000">
-      <span class="row"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="num">0120-000-000</span></span>
-      <span class="row"><span class="free">通話無料</span><span class="sub">押すと電話がかかります</span></span>
-    </a>
-    <a class="btn btn-line" href="#line">
-      <svg aria-hidden="true"><use href="#i-line"/></svg>
-      <span>LINEで相談する<small>写真を送るだけでOK・24時間受付</small></span>
-    </a>
-  </section>
-
-  <!-- ③ キービジュアル -->
-  <section class="kv">
-    <div class="kv-photo">
-      <img src="img/hero.jpg" alt="玄関先であいさつする男性と女性のスタッフ" width="1200" height="800" fetchpriority="high">
-      <div class="kv-copy">
-        <span class="area-badge">東京23区 最短その日のうちに</span>
-        <h1><span class="nw">電球1個から、</span><span class="nw">おうちに</span><span class="nw">うかがいます。</span></h1>
-      </div>
+  <!-- ② ファーストビュー -->
+  <section class="fv">
+    <div class="fv-photo">
+      <img src="img/hero.jpg" alt="玄関先であいさつする女性と男性のスタッフ" width="1200" height="800" fetchpriority="high">
+      <span class="fv-badge">女性スタッフも指名できます</span>
+    </div>
+    <div class="fv-copy">
+      <h1><span class="nw">ひとりで頑張らなくて、</span><span class="nw">大丈夫です。</span></h1>
+      <p><span class="nw">電球1個から、</span><span class="nw">町の便利屋が</span><span class="nw">おうちにうかがいます。</span></p>
     </div>
     <div class="facts">
       <div class="fact"><b>5,500円</b>1時間<br>出張費こみ</div>
-      <div class="fact"><b>男性・女性</b>スタッフを<br>選べる</div>
-      <div class="fact"><b>追加0円</b>あとから<br>増えない</div>
+      <div class="fact"><b>女性</b>スタッフを<br>選べます</div>
+      <div class="fact"><b>追加0円</b>あとから<br>増えません</div>
     </div>
-    <div class="can">
-      <p>たとえば、こんなことを頼めます</p>
-      <ul>
-        <li>電球の交換</li><li>家具の移動</li><li>組み立て</li><li>ゴミ出し</li><li>病院の付き添い</li><li>買い物</li><li>草むしり</li>
+    <div class="cta-pair" id="top-cta">
+      <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span><span class="num">0120-000-000</span><small><span class="free">通話無料</span>押すと電話がかかります</small></span></a>
+      <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>写真を送るだけでOK・24時間受付</small></span></a>
+    </div>
+  </section>
+
+  <!-- ③ 共感 -->
+  <section class="band blush">
+    <div class="in">
+      <p class="kicker">こんなこと、ありませんか？</p>
+      <h2>ちょっとしたことほど、<br>頼む人がいなくて困る。</h2>
+      <ul class="pains">
+        <li><span class="nw">天井の電球が高くて、</span><span class="nw">ひとりでは怖い</span></li>
+        <li><span class="nw">重い家具を動かしたい。</span><span class="nw">でも力がない</span></li>
+        <li><span class="nw">知らない男性が家に来るのは、</span><span class="nw">少し不安</span></li>
+        <li><span class="nw">業者に頼むと、</span><span class="nw">いくらかかるか分からない</span></li>
+        <li>離れて暮らす親のことが気になる</li>
       </ul>
+      <p class="answer">そんなときは、<br><em>町の便利屋</em>にお任せください。</p>
     </div>
   </section>
 
-  <!-- ④ 事例 -->
-  <section class="band" id="cases">
+  <!-- ④ 頼めること -->
+  <section class="band" id="menu">
     <div class="in">
-      <h2>最近のご依頼</h2>
-      <p class="lead">料金はすべて出張費こみの合計です。</p>
-      <div class="cases">
-        <article class="case">
-          <img src="img/case-bulb.jpg" alt="脚立に乗って天井の電球を替えるスタッフと、見守るお客様" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <span class="tag">港区・80代の女性</span>
-            <h3>高いところの電球交換</h3>
-            <table class="spec"><tbody>
-              <tr><th scope="row">作業時間</th><td>20分（スタッフ1人）</td></tr>
-              <tr><th scope="row">料金合計</th><td class="yen">5,500円</td></tr>
-            </tbody></table>
-            <blockquote>脚立に乗るのが怖くて。電話したら翌日すぐ来てくれました。</blockquote>
-          </div>
-        </article>
-        <article class="case">
-          <img src="img/case-chest.jpg" alt="タンスを2人で運ぶスタッフ" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <span class="tag">世田谷区・70代の男性</span>
-            <h3>タンスを別の部屋へ移動</h3>
-            <table class="spec"><tbody>
-              <tr><th scope="row">作業時間</th><td>1時間（スタッフ2人）</td></tr>
-              <tr><th scope="row">料金合計</th><td class="yen">11,000円</td></tr>
-            </tbody></table>
-            <blockquote>腰を痛めていたので本当に助かりました。</blockquote>
-          </div>
-        </article>
-        <article class="case">
-          <img src="img/case-shelf.jpg" alt="本棚を組み立てる女性スタッフ" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <span class="tag">練馬区・30代の女性</span>
-            <h3>本棚の組み立て（女性スタッフを指名）</h3>
-            <table class="spec"><tbody>
-              <tr><th scope="row">作業時間</th><td>1時間30分（スタッフ1人）</td></tr>
-              <tr><th scope="row">料金合計</th><td class="yen">7,150円</td></tr>
-            </tbody></table>
-            <blockquote>女性の方に来てもらえて、ひとり暮らしでも安心でした。</blockquote>
-          </div>
-        </article>
-        <article class="case">
-          <img src="img/case-visit.jpg" alt="お年寄りと腕を組んで歩くスタッフ" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <span class="tag">杉並区・70代の女性（ご家族から依頼）</span>
-            <h3>病院への付き添い</h3>
-            <table class="spec"><tbody>
-              <tr><th scope="row">作業時間</th><td>2時間（スタッフ1人）</td></tr>
-              <tr><th scope="row">料金合計</th><td class="yen">8,800円</td></tr>
-            </tbody></table>
-            <blockquote>遠くに住んでいて行けないので、LINEで頼めて便利でした。</blockquote>
-          </div>
-        </article>
-        <a class="more" href="#cases">ほかのご依頼も見る</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑤ 困りごとから選ぶ -->
-  <section class="band tint" id="menu">
-    <div class="in">
+      <p class="kicker">頼めること</p>
       <h2>何にお困りですか？</h2>
-      <p class="lead">近いものを押してください。</p>
+      <p class="lead">近いものを押すと、くわしい内容と料金が見られます。</p>
       <ul class="tiles">
         <li><a class="tile" href="#menu"><img src="img/faucet.jpg" alt="" width="600" height="600" loading="lazy"><span>電球・水まわり</span></a></li>
         <li><a class="tile" href="#menu"><img src="img/case-chest.jpg" alt="" width="600" height="600" loading="lazy"><span>家具の移動</span></a></li>
@@ -318,23 +269,90 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
         <li><a class="tile" href="#menu"><img src="img/case-visit.jpg" alt="" width="600" height="600" loading="lazy"><span>付き添い</span></a></li>
         <li><a class="tile" href="#menu"><img src="img/shopping.jpg" alt="" width="600" height="600" loading="lazy"><span>買い物</span></a></li>
         <li><a class="tile" href="#menu"><img src="img/garden.jpg" alt="" width="600" height="600" loading="lazy"><span>庭・草むしり</span></a></li>
-        <li><a class="tile other" href="#menu"><b>？</b><span>どれにも当てはまらない<br>ときはお電話を</span></a></li>
+        <li><a class="tile other" href="#menu"><b>？</b><span>どれにも当てはまらない<br>ときも、ご相談ください</span></a></li>
       </ul>
     </div>
   </section>
 
-  <!-- ⑥ 料金 -->
+  <!-- ⑤ 事例 -->
+  <section class="band sage" id="cases">
+    <div class="in">
+      <p class="kicker">ご依頼の例</p>
+      <h2>こんなふうに<br>お手伝いしています</h2>
+      <p class="lead">料金はすべて出張費こみの合計です。</p>
+      <div class="cases">
+        <article class="case">
+          <img src="img/case-shelf.jpg" alt="本棚を組み立てる女性スタッフ" width="1200" height="900" loading="lazy">
+          <div class="body">
+            <span class="tag">練馬区・30代の女性</span>
+            <h3>本棚の組み立て（女性スタッフを指名）</h3>
+            <div class="meta"><span>1時間30分・スタッフ1人</span><span class="yen">7,150円<small> 合計</small></span></div>
+            <blockquote>女性の方に来てもらえて、ひとり暮らしでも安心でした。</blockquote>
+          </div>
+        </article>
+        <article class="case">
+          <img src="img/case-bulb.jpg" alt="脚立に乗って天井の電球を替えるスタッフと、見守るお客様" width="1200" height="900" loading="lazy">
+          <div class="body">
+            <span class="tag">港区・80代の女性</span>
+            <h3>高いところの電球交換</h3>
+            <div class="meta"><span>20分・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+            <blockquote>脚立に乗るのが怖くて。電話したら翌日すぐ来てくれました。</blockquote>
+          </div>
+        </article>
+        <article class="case">
+          <img src="img/case-visit.jpg" alt="お年寄りと腕を組んで歩く女性スタッフ" width="1200" height="900" loading="lazy">
+          <div class="body">
+            <span class="tag">杉並区・70代の女性（娘さまから依頼）</span>
+            <h3>病院への付き添い</h3>
+            <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+            <blockquote>遠くに住んでいて行けないので、LINEで頼めて助かりました。</blockquote>
+          </div>
+        </article>
+        <a class="more" href="#cases">ほかのご依頼も見る</a>
+      </div>
+      <div class="mid-cta">
+        <p>同じようなことで困っていませんか？</p>
+        <div class="cta-pair">
+          <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>電話で相談する<small>通話無料・毎日9時〜20時</small></span></a>
+          <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>24時間受付</small></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 安心の理由 -->
+  <section class="band blush">
+    <div class="in">
+      <p class="kicker">はじめての方へ</p>
+      <h2>安心して頼める<br>3つの理由</h2>
+      <ol class="reasons">
+        <li class="reason">
+          <img src="img/team.jpg" alt="町の便利屋の女性と男性のスタッフ4人" width="1200" height="800" loading="lazy">
+          <div class="txt"><span class="no"></span><h3>女性スタッフを選べます</h3><p>「女性に来てほしい」「力仕事なので男性に」など、ご希望に合わせます。顔の見える地元のスタッフがうかがいます。</p></div>
+        </li>
+        <li class="reason">
+          <div class="txt"><span class="no"></span><h3>先に、合計金額をお伝えします</h3><p>出張費もこみの合計をお伝えし、納得していただいてから予約になります。作業のあとで料金が増えることはありません。</p></div>
+        </li>
+        <li class="reason">
+          <img src="img/shopping.jpg" alt="お年寄りに買い物袋を手渡す女性スタッフ" width="1200" height="1200" loading="lazy">
+          <div class="txt"><span class="no"></span><h3>離れて暮らすご家族も安心</h3><p>ご家族がLINEで申し込み、ご両親の家にうかがえます。作業のようすは写真でお送りします。</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ⑦ 料金 -->
   <section class="band" id="price">
     <div class="in">
-      <h2>料金</h2>
+      <p class="kicker">料金</p>
+      <h2>わかりやすい料金です</h2>
       <div class="price">
-        <div class="price-head">スタッフ1人あたり（税込）</div>
         <div class="price-main">
           <div class="pline"><span class="k">はじめの1時間<small>出張費こみ。短い作業もこの料金です</small></span><span class="v">5,500<small>円</small></span></div>
           <div class="pline"><span class="k">そのあと 30分ごと</span><span class="v">1,650<small>円</small></span></div>
           <p class="promise">作業の前に合計金額をお伝えします。作業のあとで料金が増えることはありません。</p>
           <table class="ptable">
-            <caption>合計のめやす（スタッフ1人）</caption>
+            <caption>合計のめやす（スタッフ1人・税込）</caption>
             <tbody>
               <tr><th scope="row">1時間まで</th><td>5,500円</td></tr>
               <tr><th scope="row">1時間30分</th><td>7,150円</td></tr>
@@ -343,58 +361,54 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
               <tr><th scope="row">車を使う作業</th><td>＋3,300円</td></tr>
             </tbody>
           </table>
-          <p class="note">※金額は仮のものです。お支払いは作業後に、現金・クレジットカード・PayPayで。</p>
+          <p class="note">※金額は仮のものです。お支払いは作業のあとに、現金・クレジットカード・PayPayで。</p>
+        </div>
+      </div>
+      <div class="mid-cta">
+        <p>あなたの場合の金額を、無料でお伝えします</p>
+        <div class="cta-pair">
+          <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>電話で聞いてみる<small>通話無料・毎日9時〜20時</small></span></a>
+          <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで聞いてみる<small>写真を送るだけでOK</small></span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⑦ スタッフ・安心 -->
-  <section class="band tint">
-    <div class="in staff">
-      <h2>うかがうのは、こんなスタッフです</h2>
-      <img src="img/team.jpg" alt="町の便利屋のスタッフ4人" width="1200" height="800" loading="lazy">
-      <ul class="checks">
-        <li><b>男性・女性スタッフを選べます</b><span>「女性に来てほしい」「力仕事なので男性に」など、お電話でお伝えください。</span></li>
-        <li><b>先に合計金額をお伝えします</b><span>納得していただいてから予約になります。</span></li>
-        <li><b>ご家族からのご依頼もできます</b><span>離れて暮らすご家族がLINEで申し込むこともできます。作業のようすは写真でお送りします。</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ⑧ ご利用の流れ -->
-  <section class="band">
+  <!-- ⑧ お客様の声 -->
+  <section class="band sage">
     <div class="in">
-      <h2>ご利用の流れ</h2>
-      <ol class="flow">
-        <li class="step"><span class="no">STEP<b>1</b></span><h3>電話かLINEで相談</h3><p>困っていることを、そのままお話しください。</p><img src="img/reception.jpg" alt="電話を受ける受付スタッフ" width="1200" height="900" loading="lazy"></li>
-        <li class="arrow" aria-hidden="true">▼</li>
-        <li class="step"><span class="no">STEP<b>2</b></span><h3>合計金額をお伝えします</h3><p>納得していただけたら、日にちを決めて予約します。</p></li>
-        <li class="arrow" aria-hidden="true">▼</li>
-        <li class="step"><span class="no">STEP<b>3</b></span><h3>当日うかがいます</h3><p>作業が終わってから、お支払いください。</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ⑨ お客様の声 -->
-  <section class="band tint">
-    <div class="in">
-      <h2>お客様の声</h2>
+      <p class="kicker">お客様の声</p>
+      <h2>ご利用いただいた方から</h2>
       <div class="voices">
-        <div class="voice"><p>電話に出た方がとても丁寧で、スマホが苦手な私でも簡単に頼めました。</p><p class="who">江東区・80代の男性</p></div>
+        <div class="voice"><p>電話に出た方がとても丁寧で、スマホが苦手な私でも簡単に頼めました。</p><p class="who">江東区・80代の女性</p></div>
         <div class="voice"><p>実家の片付けをお願いしました。LINEで写真を送ってくれて、離れていても様子がわかりました。</p><p class="who">品川区・50代の女性</p></div>
-        <div class="voice"><p>料金を先に教えてくれたので安心してお願いできました。</p><p class="who">足立区・60代の女性</p></div>
+        <div class="voice"><p>料金を先に教えてくれたので、安心してお願いできました。</p><p class="who">足立区・60代の男性</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ⑩ よくある質問 -->
+  <!-- ⑨ ご利用の流れ -->
   <section class="band">
     <div class="in">
-      <h2>よくある質問</h2>
+      <p class="kicker">ご利用の流れ</p>
+      <h2>かんたん3ステップ</h2>
+      <ol class="flow">
+        <li class="step"><span class="no">1</span><div><h3>電話かLINEで相談</h3><p>困っていることを、そのままお話しください。スタッフの希望（女性・男性）もこのときに。</p></div></li>
+        <li class="step"><span class="no">2</span><div><h3>合計金額をお伝えします</h3><p>納得していただけたら、日にちを決めて予約します。</p></div></li>
+        <li class="step"><span class="no">3</span><div><h3>当日うかがいます</h3><p>作業が終わってから、お支払いください。</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ⑩ よくある質問 -->
+  <section class="band blush">
+    <div class="in">
+      <p class="kicker">よくある質問</p>
+      <h2>気になることに<br>お答えします</h2>
       <div class="faq">
+        <details><summary>女性スタッフに来てもらえますか？</summary><p>はい。ご相談のときに「女性スタッフで」とお伝えください。男性スタッフの指名もできます。</p></details>
+        <details><summary>こんな小さなことを頼んでもいいですか？</summary><p>もちろんです。電球1個、ビンのふた1つからでも大丈夫です。</p></details>
         <details><summary>今日すぐ来てもらえますか？</summary><p>空きがあれば、その日のうちにうかがいます。まずはお電話ください。</p></details>
-        <details><summary>男性か女性か、スタッフを選べますか？</summary><p>はい、選べます。ご相談のときにお伝えください。</p></details>
         <details><summary>支払いはいつ、どうやってしますか？</summary><p>作業が終わってから、現金・クレジットカード・PayPayでお支払いいただけます。</p></details>
         <details><summary>キャンセルはできますか？</summary><p>前々日まではキャンセル料はかかりません。前日・当日は料金の一部をいただきます。</p></details>
       </div>
@@ -402,22 +416,21 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
     </div>
   </section>
 
-  <!-- ⑪ 最後のCTA -->
-  <section class="band tint">
+  <!-- ⑪ 最後の相談 -->
+  <section class="band">
     <div class="in end">
       <div class="op">
-        <img src="img/reception.jpg" alt="" width="600" height="600" loading="lazy">
-        <p><b>小さなことでも、お気軽にどうぞ。</b><br>受付スタッフがお話をうかがいます。</p>
+        <img src="img/reception.jpg" alt="電話を受ける受付スタッフ" width="600" height="600" loading="lazy">
+        <div><h2>まずは、お話だけでも。</h2><p class="lead">受付スタッフが、ゆっくりお話をうかがいます。</p></div>
       </div>
-      <a class="btn btn-tel" href="tel:0120000000">
-        <span class="row"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="num">0120-000-000</span></span>
-        <span class="row"><span class="free">通話無料</span><span class="sub">毎日 9時〜20時</span></span>
-      </a>
-      <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>24時間受付</small></span></a>
+      <div class="cta-pair">
+        <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span><span class="num">0120-000-000</span><small><span class="free">通話無料</span>毎日9時〜20時</small></span></a>
+        <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>24時間受付</small></span></a>
+      </div>
+      <p class="cta-note">相談・お見積もりだけでも、料金はかかりません。</p>
     </div>
   </section>
 
-  <!-- ⑫ フッター -->
   <footer class="footer">
     <div class="sitename">町の便利屋</div>
     <ul>
@@ -437,13 +450,14 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 </nav>
 
 <script>
-// 上の電話・LINEボタンが画面にある間は、下の固定バーを隠す
+// 上の相談ボタンが画面にある間（またはまだ下にある間）は、下の固定バーを隠す
 (function () {
   var bar = document.getElementById('fixed-bar');
   var cta = document.getElementById('top-cta');
   if (!('IntersectionObserver' in window)) { bar.classList.remove('is-hidden'); return; }
   new IntersectionObserver(function (entries) {
-    bar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    var e = entries[0];
+    bar.classList.toggle('is-hidden', e.isIntersecting || e.boundingClientRect.top > 0);
   }).observe(cta);
 })();
 // 受付時間中かどうかを表示（東京の時刻で 9:00〜20:00）
