@@ -1,0 +1,448 @@
+<title>町の便利屋 トップページ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700;900&display=swap">
+<style>
+/* Layout: スマホ1カラム（最大560px）。上から CTA → キービジュアル → 事例 の順で、画面下に電話/LINEを固定 */
+:root {
+  --bg: #F4F7F6;
+  --surface: #FFFFFF;
+  --ink: #1B2A27;
+  --muted: #475752;
+  --border: #CFDAD6;
+  --brand: #1F5C4F;
+  --brand-soft: #E2EEEA;
+  --btn-tel: #1F5C4F;
+  --line: #05994A;
+  --sun: #F4B740;
+  --sun-soft: #FFF2D2;
+  --on-fill: #FFFFFF;
+  --on-sun: #1B2A27;
+  --roof: #D9785B;
+  --wall: #FFFFFF;
+  --skin: #F6D2B8;
+  --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", sans-serif;
+  --body: "BIZ UDPGothic", "Hiragino Sans", "Meiryo", sans-serif;
+  --fs-body: 1.125rem;   /* 18px */
+  --fs-small: 1rem;      /* 16px：これより小さくしない */
+  --fs-h2: 1.625rem;
+  --fs-price: 2.25rem;
+  --tap: 3.75rem;        /* ボタンの高さ 60px */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111816; --surface: #1A2421; --ink: #EEF3F1; --muted: #B7C4C0; --border: #2F3D39;
+    --brand: #82CBB6; --brand-soft: #1E322D; --btn-tel: #2A7564; --line: #05994A;
+    --sun: #F4B740; --sun-soft: #3A3120; --on-fill: #FFFFFF; --on-sun: #1B2A27;
+    --roof: #C9694D; --wall: #DDE6E3; --skin: #E8C1A5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111816; --surface: #1A2421; --ink: #EEF3F1; --muted: #B7C4C0; --border: #2F3D39;
+  --brand: #82CBB6; --brand-soft: #1E322D; --btn-tel: #2A7564; --line: #05994A;
+  --sun: #F4B740; --sun-soft: #3A3120; --on-fill: #FFFFFF; --on-sun: #1B2A27;
+  --roof: #C9694D; --wall: #DDE6E3; --skin: #E8C1A5;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  line-height: 1.8;
+  padding-inline: 16px;
+  padding-block: 0 calc(6.5rem + env(safe-area-inset-bottom, 0px));
+}
+.page { max-width: 35rem; margin-inline: auto; display: grid; gap: 3rem; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.4; margin: 0; text-wrap: balance; }
+h2 { font-size: var(--fs-h2); }
+p { margin: 0; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 4px solid var(--sun); outline-offset: 3px; }
+
+/* ① ヘッダー */
+.header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem 0; }
+.sitename { font-family: var(--display); font-weight: 900; font-size: 1.5rem; color: var(--brand); }
+.hours { font-size: var(--fs-small); color: var(--muted); text-align: right; line-height: 1.5; }
+.hours strong { color: var(--ink); display: block; }
+
+/* ② CTA */
+.cta { display: grid; gap: 0.875rem; }
+.cta-lead { font-family: var(--display); font-weight: 700; font-size: 1.375rem; text-align: center; }
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  min-height: var(--tap); padding: 0.75rem 1rem; border-radius: 0.875rem;
+  font-family: var(--display); font-weight: 900; font-size: 1.375rem;
+  text-decoration: none; color: var(--on-fill); border: 0;
+}
+.btn svg { width: 1.75rem; height: 1.75rem; flex: none; }
+.btn small { display: block; font-family: var(--body); font-weight: 700; font-size: var(--fs-small); opacity: 0.95; line-height: 1.3; }
+.btn-tel { background: var(--btn-tel); }
+.btn-line { background: var(--line); }
+.btn-text { text-align: left; line-height: 1.3; }
+.tel-number { text-align: center; font-size: var(--fs-small); color: var(--muted); }
+.tel-number b { font-size: 1.5rem; color: var(--ink); letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+
+/* ③ キービジュアル */
+.kv { background: var(--brand-soft); border-radius: 1.25rem; padding: 1.5rem 1.25rem; display: grid; gap: 1rem; }
+.kv h1 { font-size: 2rem; font-weight: 900; }
+.kv h1 em { white-space: nowrap; font-style: normal; background: linear-gradient(transparent 62%, var(--sun) 62%); }
+.kv svg { width: 100%; height: auto; max-width: 100%; }
+.badges { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.badges li { background: var(--surface); border: 2px solid var(--brand); color: var(--ink); border-radius: 999px; padding: 0.25rem 0.875rem; font-weight: 700; font-size: var(--fs-small); }
+.badges li::before { content: "✓ "; color: var(--brand); }
+
+/* 共通の見出し */
+.sec { display: grid; gap: 1.25rem; }
+.sec-head { display: grid; gap: 0.375rem; }
+.sec-head p { color: var(--muted); }
+
+/* ④ 事例 */
+.cases { display: grid; gap: 1rem; }
+.case { background: var(--surface); border: 2px solid var(--border); border-radius: 1rem; padding: 1.25rem; display: grid; grid-template-columns: 4.5rem 1fr; gap: 0.25rem 1rem; }
+.case .ill { grid-row: span 3; width: 4.5rem; height: 4.5rem; border-radius: 1rem; background: var(--sun-soft); display: grid; place-items: center; }
+.case .ill svg { width: 3.25rem; height: 3.25rem; }
+.case h3 { font-size: 1.25rem; min-width: 0; }
+.case .who { font-size: var(--fs-small); color: var(--muted); }
+.case .meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 1rem; }
+.case .time { font-size: var(--fs-small); color: var(--muted); }
+.case .price { font-weight: 700; font-size: 1.375rem; font-variant-numeric: tabular-nums; }
+.case .price span { font-size: var(--fs-small); font-weight: 400; color: var(--muted); }
+.case blockquote { grid-column: 1 / -1; margin: 0.5rem 0 0; padding: 0.75rem 1rem; background: var(--bg); border-radius: 0.75rem; }
+.more { display: flex; align-items: center; justify-content: center; min-height: var(--tap); border: 2px solid var(--brand); border-radius: 0.875rem; color: var(--brand); font-weight: 700; text-decoration: none; background: var(--surface); }
+
+/* ⑤ 困りごと */
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; list-style: none; margin: 0; padding: 0; }
+.tile { background: var(--surface); border: 2px solid var(--border); border-radius: 1rem; padding: 1rem 0.5rem; min-height: 8rem; display: grid; justify-items: center; align-content: center; gap: 0.5rem; text-align: center; font-weight: 700; line-height: 1.4; color: var(--ink); text-decoration: none; }
+.tile svg { width: 3rem; height: 3rem; }
+
+/* ⑥ 料金 */
+.price-box { background: var(--surface); border: 3px solid var(--brand); border-radius: 1.25rem; padding: 1.5rem 1.25rem; display: grid; gap: 1rem; }
+.price-row { display: grid; gap: 0.125rem; }
+.price-row .label { font-weight: 700; }
+.price-row .yen { font-family: var(--display); font-weight: 900; font-size: var(--fs-price); line-height: 1.2; font-variant-numeric: tabular-nums; }
+.price-row .yen small { font-size: 1.125rem; }
+.price-row .note { font-size: var(--fs-small); color: var(--muted); }
+.divider { border: 0; border-top: 2px dashed var(--border); margin: 0; }
+.promise { background: var(--sun-soft); border-radius: 0.75rem; padding: 0.875rem 1rem; font-weight: 700; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: var(--fs-small); }
+th, td { text-align: left; padding: 0.75rem 0.5rem; border-bottom: 1px solid var(--border); }
+td.num { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tentative { font-size: var(--fs-small); color: var(--muted); }
+
+/* ⑦ 安心ポイント */
+.points { display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.point { display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem; align-items: start; }
+.point .ico { width: 3.5rem; height: 3.5rem; border-radius: 50%; background: var(--brand-soft); display: grid; place-items: center; }
+.point .ico svg { width: 2rem; height: 2rem; }
+.point h3 { font-size: 1.25rem; }
+.point p { color: var(--muted); }
+
+/* ⑧ 流れ */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: step; }
+.flow li { counter-increment: step; display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding-bottom: 1.5rem; position: relative; }
+.flow li::before { content: counter(step); width: 3rem; height: 3rem; border-radius: 50%; background: var(--btn-tel); color: var(--on-fill); font-family: var(--display); font-weight: 900; font-size: 1.5rem; display: grid; place-items: center; }
+.flow li:not(:last-child)::after { content: ""; position: absolute; left: 1.4rem; top: 3.25rem; bottom: 0.25rem; width: 4px; background: var(--border); border-radius: 2px; }
+.flow h3 { font-size: 1.25rem; }
+.flow p { color: var(--muted); }
+
+/* ⑨ 声 */
+.voices { display: grid; gap: 1rem; }
+.voice { background: var(--surface); border-radius: 1rem; padding: 1.25rem; display: grid; grid-template-columns: 3.5rem 1fr; gap: 1rem; border: 2px solid var(--border); }
+.voice svg { width: 3.5rem; height: 3.5rem; }
+.voice .name { font-size: var(--fs-small); color: var(--muted); margin-top: 0.25rem; }
+
+/* ⑩ FAQ */
+.faq { display: grid; gap: 0.75rem; }
+details { background: var(--surface); border: 2px solid var(--border); border-radius: 1rem; }
+summary { list-style: none; cursor: pointer; padding: 1rem 3rem 1rem 1.25rem; font-weight: 700; position: relative; min-height: var(--tap); display: flex; align-items: center; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "＋"; position: absolute; right: 1.25rem; font-size: 1.5rem; color: var(--brand); }
+details[open] summary::after { content: "－"; }
+details p { padding: 0 1.25rem 1.25rem; color: var(--muted); }
+
+/* エリア */
+.wards { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin: 0; padding: 0; }
+.wards li { background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.125rem 0.625rem; font-size: var(--fs-small); }
+
+/* ⑪ 最後のCTA */
+.cta-end { background: var(--brand-soft); border-radius: 1.25rem; padding: 1.5rem 1.25rem; }
+
+/* ⑫ フッター */
+.footer { border-top: 1px solid var(--border); padding-block: 1.5rem; display: grid; gap: 0.75rem; font-size: var(--fs-small); color: var(--muted); }
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+.footer a { color: var(--ink); }
+
+/* 固定バー */
+.fixed-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 0.625rem 16px calc(0.625rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 16px rgb(0 0 0 / 0.08);
+}
+.fixed-bar .inner { max-width: 35rem; margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+.fixed-bar .btn { font-size: 1.25rem; min-height: 3.5rem; }
+
+/* イラストの色 */
+.c-brand { fill: var(--btn-tel); } .c-sun { fill: var(--sun); } .c-roof { fill: var(--roof); }
+.c-wall { fill: var(--wall); } .c-skin { fill: var(--skin); } .c-ink { fill: var(--ink); }
+.c-soft { fill: var(--brand-soft); } .c-line { fill: var(--line); } .c-surface { fill: var(--surface); }
+.s-ink { stroke: var(--ink); } .s-brand { stroke: var(--btn-tel); } .s-sun { stroke: var(--sun); }
+@media (prefers-reduced-motion: no-preference) {
+  .wave { transform-origin: 236px 104px; animation: wave 2.4s ease-in-out 0.6s 2; }
+  @keyframes wave { 0%,100% { transform: rotate(0); } 25%,75% { transform: rotate(-14deg); } 50% { transform: rotate(6deg); } }
+}
+</style>
+
+<!-- アイコン（イラスト）一式 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></symbol>
+  <symbol id="i-line" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8zM8.3 13.4H6.4a.5.5 0 0 1-.5-.5V9.1a.5.5 0 0 1 1 0v3.3h1.4a.5.5 0 0 1 0 1zm2 -.5a.5.5 0 0 1-1 0V9.1a.5.5 0 0 1 1 0zm4.6 0a.5.5 0 0 1-.9.3l-1.9-2.6v2.3a.5.5 0 0 1-1 0V9.1a.5.5 0 0 1 .9-.3l1.9 2.6V9.1a.5.5 0 0 1 1 0zm3.1-2.4a.5.5 0 0 1 0 1h-1.4v.9h1.4a.5.5 0 0 1 0 1h-1.9a.5.5 0 0 1-.5-.5V9.1a.5.5 0 0 1 .5-.5h1.9a.5.5 0 0 1 0 1h-1.4v.9z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 64 64"><path class="c-sun" d="M32 8a16 16 0 0 0-9 29.2V44h18v-6.8A16 16 0 0 0 32 8z"/><rect class="c-brand" x="23" y="44" width="18" height="5" rx="1.5"/><rect class="c-brand" x="25" y="50" width="14" height="5" rx="1.5"/><rect class="c-ink" x="28" y="56" width="8" height="3" rx="1.5"/><path class="s-ink" fill="none" stroke-width="2.5" stroke-linecap="round" d="M28 30l4 6 4-6"/></symbol>
+  <symbol id="i-chest" viewBox="0 0 64 64"><rect class="c-roof" x="12" y="10" width="40" height="44" rx="3"/><rect class="c-wall" x="16" y="14" width="32" height="11" rx="1.5"/><rect class="c-wall" x="16" y="28" width="32" height="11" rx="1.5"/><rect class="c-wall" x="16" y="42" width="32" height="9" rx="1.5"/><rect class="c-ink" x="28" y="18" width="8" height="3" rx="1.5"/><rect class="c-ink" x="28" y="32" width="8" height="3" rx="1.5"/><rect class="c-ink" x="28" y="45" width="8" height="3" rx="1.5"/><rect class="c-ink" x="15" y="54" width="5" height="4"/><rect class="c-ink" x="44" y="54" width="5" height="4"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 64 64"><rect class="c-brand" x="8" y="26" width="48" height="28" rx="4"/><path class="s-ink" fill="none" stroke-width="4" d="M24 26v-6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6"/><rect class="c-sun" x="8" y="36" width="48" height="5"/><rect class="c-ink" x="28" y="33" width="8" height="10" rx="2"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 64 64"><circle class="c-skin" cx="22" cy="16" r="7"/><circle class="c-skin" cx="43" cy="18" r="6"/><path class="c-brand" d="M13 56V34a9 9 0 0 1 18 0v22z"/><path class="c-roof" d="M35 56V35a8 8 0 0 1 16 0v21z"/><path class="s-ink" fill="none" stroke-width="3" stroke-linecap="round" d="M29 38c3 2 5 2 8 0"/><path class="s-ink" fill="none" stroke-width="3" stroke-linecap="round" d="M53 36l4 20"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 64 64"><rect class="c-sun" x="4" y="18" width="34" height="26" rx="2"/><path class="c-brand" d="M38 26h12l8 10v8H38z"/><rect class="c-wall" x="42" y="29" width="8" height="6" rx="1"/><circle class="c-ink" cx="16" cy="46" r="6"/><circle class="c-ink" cx="48" cy="46" r="6"/><circle class="c-wall" cx="16" cy="46" r="2.5"/><circle class="c-wall" cx="48" cy="46" r="2.5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 64 64"><path class="c-line" d="M14 54c0-14 4-26 8-34 2 10 2 24 0 34z"/><path class="c-brand" d="M24 54c2-16 10-28 20-36-2 12-8 26-14 36z"/><path class="c-line" d="M36 54c4-10 10-16 18-20-4 8-8 14-12 20z"/><rect class="c-roof" x="6" y="52" width="52" height="6" rx="3"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 64 64"><path class="c-sun" d="M12 22h40l-3 34H15z"/><path class="s-ink" fill="none" stroke-width="3.5" stroke-linecap="round" d="M24 26v-8a8 8 0 0 1 16 0v8"/><path class="c-line" d="M30 34c6-6 12-2 10 4s-10 8-14 8c0-4 0-8 4-12z"/></symbol>
+  <symbol id="i-more" viewBox="0 0 64 64"><circle class="c-soft" cx="32" cy="32" r="26"/><circle class="c-brand" cx="20" cy="32" r="5"/><circle class="c-brand" cx="32" cy="32" r="5"/><circle class="c-brand" cx="44" cy="32" r="5"/></symbol>
+  <symbol id="i-person" viewBox="0 0 64 64"><circle class="c-soft" cx="32" cy="32" r="30"/><circle class="c-skin" cx="32" cy="26" r="11"/><path class="c-brand" d="M12 56a20 20 0 0 1 40 0z"/></symbol>
+  <symbol id="i-person2" viewBox="0 0 64 64"><circle class="c-sun-soft c-soft" cx="32" cy="32" r="30"/><path class="c-ink" d="M20 28a12 12 0 0 1 24 0v8H20z"/><circle class="c-skin" cx="32" cy="27" r="10"/><path class="c-roof" d="M12 56a20 20 0 0 1 40 0z"/></symbol>
+  <symbol id="i-yen" viewBox="0 0 32 32"><circle class="c-surface" cx="16" cy="16" r="14"/><path class="s-brand" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M10 8l6 8 6-8M16 16v10M11 17h10M11 21h10"/></symbol>
+  <symbol id="i-family" viewBox="0 0 32 32"><circle class="c-brand" cx="11" cy="10" r="4"/><circle class="c-brand" cx="22" cy="11" r="3.5"/><path class="c-brand" d="M4 27a7 7 0 0 1 14 0zM16 27a6 6 0 0 1 12 0z"/></symbol>
+  <symbol id="i-staff" viewBox="0 0 32 32"><circle class="c-brand" cx="10" cy="10" r="4"/><circle class="c-roof" cx="22" cy="10" r="4"/><path class="c-brand" d="M3 27a7 7 0 0 1 14 0z"/><path class="c-roof" d="M15 27a7 7 0 0 1 14 0z"/></symbol>
+</svg>
+
+<div class="page">
+
+  <!-- ① ヘッダー -->
+  <header class="header">
+    <div class="sitename">町の便利屋</div>
+    <div class="hours"><strong>毎日 9時〜20時</strong>東京23区</div>
+  </header>
+
+  <!-- ② CTA -->
+  <section class="cta" aria-label="ご相談">
+    <p class="cta-lead">お困りごと、<br>まずはご相談ください</p>
+    <a class="btn btn-tel" href="tel:0120000000">
+      <svg aria-hidden="true"><use href="#i-tel"/></svg>
+      <span class="btn-text">電話で相談する<small>相談・お見積もりは無料です</small></span>
+    </a>
+    <a class="btn btn-line" href="#line">
+      <svg aria-hidden="true"><use href="#i-line"/></svg>
+      <span class="btn-text">LINEで相談する<small>写真を送るだけでもOK</small></span>
+    </a>
+    <p class="tel-number">お電話 <b>0120-000-000</b>（仮）</p>
+  </section>
+
+  <!-- ③ キービジュアル -->
+  <section class="kv">
+    <h1>困ったら、<br><em>ここを押すだけ。</em></h1>
+    <svg viewBox="0 0 320 180" role="img" aria-label="町の家の前で手をふるスタッフのイラスト">
+      <circle class="c-sun" cx="272" cy="36" r="20"/>
+      <rect class="c-surface" x="0" y="150" width="320" height="30" rx="4"/>
+      <!-- 家 -->
+      <path class="c-roof" d="M14 84l46-36 46 36z"/><rect class="c-wall" x="22" y="84" width="76" height="66"/>
+      <rect class="c-soft" x="34" y="98" width="20" height="18" rx="2"/><rect class="c-brand" x="66" y="110" width="20" height="40" rx="2"/>
+      <path class="c-brand" d="M112 96l32-26 32 26z"/><rect class="c-wall" x="118" y="96" width="52" height="54"/>
+      <rect class="c-sun" x="130" y="108" width="14" height="14" rx="2"/><rect class="c-sun" x="150" y="108" width="14" height="14" rx="2"/>
+      <!-- スタッフ -->
+      <rect class="c-brand" x="206" y="96" width="40" height="44" rx="12"/>
+      <rect class="c-sun" x="214" y="104" width="24" height="30" rx="4"/>
+      <circle class="c-skin" cx="226" cy="80" r="15"/>
+      <path class="c-brand" d="M210 76a16 16 0 0 1 32 0z"/><rect class="c-brand" x="236" y="72" width="12" height="5" rx="2"/>
+      <circle class="c-ink" cx="221" cy="82" r="1.8"/><circle class="c-ink" cx="231" cy="82" r="1.8"/>
+      <path class="s-ink" fill="none" stroke-width="2" stroke-linecap="round" d="M222 88q4 3 8 0"/>
+      <g class="wave"><rect class="c-brand" x="240" y="78" width="10" height="28" rx="5" transform="rotate(-30 245 104)"/><circle class="c-skin" cx="256" cy="80" r="6"/></g>
+      <rect class="c-brand" x="200" y="100" width="10" height="30" rx="5"/>
+      <rect class="c-ink" x="212" y="138" width="10" height="14" rx="3"/><rect class="c-ink" x="230" y="138" width="10" height="14" rx="3"/>
+      <!-- 道具箱 -->
+      <rect class="c-roof" x="178" y="128" width="24" height="18" rx="3"/><rect class="c-ink" x="186" y="124" width="8" height="5" rx="2"/>
+    </svg>
+    <ul class="badges">
+      <li>作業後の追加料金なし</li>
+      <li>男性・女性スタッフを選べる</li>
+      <li>東京23区どこでも</li>
+    </ul>
+  </section>
+
+  <!-- ④ 事例 -->
+  <section class="sec" id="cases">
+    <div class="sec-head">
+      <h2>こんなご依頼をいただいています</h2>
+      <p>料金は出張費こみの合計です。</p>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <div class="ill"><svg aria-hidden="true"><use href="#i-bulb"/></svg></div>
+        <h3>高いところの電球交換</h3>
+        <p class="who">港区・80代の女性</p>
+        <div class="meta"><span class="time">作業 20分</span><span class="price">5,500円<span>（合計）</span></span></div>
+        <blockquote>脚立に乗るのが怖くて。電話したら翌日すぐ来てくれました。</blockquote>
+      </article>
+      <article class="case">
+        <div class="ill"><svg aria-hidden="true"><use href="#i-chest"/></svg></div>
+        <h3>タンスを別の部屋へ移動</h3>
+        <p class="who">世田谷区・70代の男性</p>
+        <div class="meta"><span class="time">スタッフ2人・1時間</span><span class="price">11,000円<span>（合計）</span></span></div>
+        <blockquote>腰を痛めていたので本当に助かりました。</blockquote>
+      </article>
+      <article class="case">
+        <div class="ill"><svg aria-hidden="true"><use href="#i-tool"/></svg></div>
+        <h3>本棚の組み立て</h3>
+        <p class="who">練馬区・30代の女性（女性スタッフを指名）</p>
+        <div class="meta"><span class="time">作業 1時間30分</span><span class="price">7,150円<span>（合計）</span></span></div>
+        <blockquote>女性の方に来てもらえて、ひとり暮らしでも安心でした。</blockquote>
+      </article>
+      <article class="case">
+        <div class="ill"><svg aria-hidden="true"><use href="#i-hand"/></svg></div>
+        <h3>病院への付き添い</h3>
+        <p class="who">杉並区・70代の女性（ご家族からの依頼）</p>
+        <div class="meta"><span class="time">2時間</span><span class="price">8,800円<span>（合計）</span></span></div>
+        <blockquote>遠くに住んでいて行けないので、LINEで頼めて便利でした。</blockquote>
+      </article>
+      <a class="more" href="#cases">ほかの例を見る　▶</a>
+    </div>
+  </section>
+
+  <!-- ⑤ 困りごとから選ぶ -->
+  <section class="sec" id="menu">
+    <div class="sec-head">
+      <h2>何にお困りですか？</h2>
+      <p>近いものを押してください。</p>
+    </div>
+    <ul class="tiles">
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-bulb"/></svg>電球・水まわり</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-chest"/></svg>家具の移動</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-tool"/></svg>組み立て・取り付け</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-truck"/></svg>片付け・ゴミ出し</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-hand"/></svg>付き添い・見守り</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-bag"/></svg>買い物・代わりに行く</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-leaf"/></svg>庭・草むしり</a></li>
+      <li><a class="tile" href="#menu"><svg aria-hidden="true"><use href="#i-more"/></svg>そのほか<br>なんでも</a></li>
+    </ul>
+  </section>
+
+  <!-- ⑥ 料金 -->
+  <section class="sec" id="price">
+    <div class="sec-head">
+      <h2>料金のめやす</h2>
+      <p>スタッフ1人あたり・税込です。</p>
+    </div>
+    <div class="price-box">
+      <div class="price-row">
+        <span class="label">はじめの1時間</span>
+        <span class="yen">5,500<small>円</small></span>
+        <span class="note">出張費こみ。1時間より短くても、この料金です。</span>
+      </div>
+      <hr class="divider">
+      <div class="price-row">
+        <span class="label">そのあとは 30分ごとに</span>
+        <span class="yen">1,650<small>円</small></span>
+      </div>
+      <p class="promise">作業の前に合計金額をお伝えします。<br>作業のあとに料金が増えることはありません。</p>
+      <div class="table-wrap">
+        <table>
+          <caption class="tentative" style="text-align:left; padding-bottom:.5rem">合計のめやす（スタッフ1人）</caption>
+          <tbody>
+            <tr><th scope="row">1時間まで</th><td class="num">5,500円</td></tr>
+            <tr><th scope="row">1時間30分</th><td class="num">7,150円</td></tr>
+            <tr><th scope="row">2時間</th><td class="num">8,800円</td></tr>
+            <tr><th scope="row">3時間</th><td class="num">12,100円</td></tr>
+            <tr><th scope="row">車が必要な作業（運び出しなど）</th><td class="num">＋3,300円</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tentative">※料金は仮のものです。</p>
+    </div>
+  </section>
+
+  <!-- ⑦ 安心ポイント -->
+  <section class="sec">
+    <div class="sec-head"><h2>はじめての方も安心です</h2></div>
+    <ul class="points">
+      <li class="point">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-staff"/></svg></div>
+        <div><h3>男性・女性スタッフを選べます</h3><p>「女性の方に来てほしい」「力仕事なので男性に」など、ご希望をお伝えください。</p></div>
+      </li>
+      <li class="point">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-yen"/></svg></div>
+        <div><h3>先に合計金額をお伝えします</h3><p>納得していただいてから予約になります。あとから料金が増えることはありません。</p></div>
+      </li>
+      <li class="point">
+        <div class="ico"><svg aria-hidden="true"><use href="#i-family"/></svg></div>
+        <div><h3>ご家族からのご依頼もできます</h3><p>離れて暮らすご家族がLINEで申し込み、ご両親の家にうかがうこともできます。</p></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ⑧ ご利用の流れ -->
+  <section class="sec">
+    <div class="sec-head"><h2>ご利用の流れ</h2></div>
+    <ol class="flow">
+      <li><div><h3>電話かLINEで相談</h3><p>困っていることをそのままお話しください。</p></div></li>
+      <li><div><h3>合計金額をお伝えします</h3><p>金額に納得していただけたら、日にちを決めて予約します。</p></div></li>
+      <li><div><h3>当日おうかがいします</h3><p>作業が終わってから、現金・カード・PayPayでお支払いください。</p></div></li>
+    </ol>
+  </section>
+
+  <!-- ⑨ お客様の声 -->
+  <section class="sec">
+    <div class="sec-head"><h2>お客様の声</h2></div>
+    <div class="voices">
+      <div class="voice"><svg aria-hidden="true"><use href="#i-person"/></svg><div><p>電話に出た方がとても丁寧で、スマホが苦手な私でも簡単に頼めました。</p><p class="name">江東区・80代の男性</p></div></div>
+      <div class="voice"><svg aria-hidden="true"><use href="#i-person2"/></svg><div><p>実家の片付けをお願いしました。写真をLINEで送ってくれて、離れていても様子がわかりました。</p><p class="name">品川区・50代の女性</p></div></div>
+    </div>
+  </section>
+
+  <!-- ⑩ よくある質問 -->
+  <section class="sec">
+    <div class="sec-head"><h2>よくある質問</h2></div>
+    <div class="faq">
+      <details><summary>今日すぐ来てもらえますか？</summary><p>空きがあれば、その日のうちにうかがいます。まずはお電話ください。</p></details>
+      <details><summary>男性か女性か、スタッフを選べますか？</summary><p>はい、選べます。ご相談のときにお伝えください。</p></details>
+      <details><summary>支払いはいつ、どうやってしますか？</summary><p>作業が終わってから、現金・クレジットカード・PayPayでお支払いいただけます。</p></details>
+      <details><summary>キャンセルはできますか？</summary><p>前々日まではキャンセル料はかかりません。前日・当日は料金の一部をいただきます（くわしくはお電話で）。</p></details>
+      <details><summary>どこまで来てもらえますか？</summary><p>東京23区にうかがいます。</p></details>
+    </div>
+    <ul class="wards" aria-label="対応エリア">
+      <li>千代田区</li><li>中央区</li><li>港区</li><li>新宿区</li><li>文京区</li><li>台東区</li><li>墨田区</li><li>江東区</li><li>品川区</li><li>目黒区</li><li>大田区</li><li>世田谷区</li><li>渋谷区</li><li>中野区</li><li>杉並区</li><li>豊島区</li><li>北区</li><li>荒川区</li><li>板橋区</li><li>練馬区</li><li>足立区</li><li>葛飾区</li><li>江戸川区</li>
+    </ul>
+  </section>
+
+  <!-- ⑪ 最後のCTA -->
+  <section class="cta cta-end" aria-label="ご相談">
+    <p class="cta-lead">小さなことでも、お気軽にどうぞ</p>
+    <a class="btn btn-tel" href="tel:0120000000">
+      <svg aria-hidden="true"><use href="#i-tel"/></svg>
+      <span class="btn-text">電話で相談する<small>毎日 9時〜20時</small></span>
+    </a>
+    <a class="btn btn-line" href="#line">
+      <svg aria-hidden="true"><use href="#i-line"/></svg>
+      <span class="btn-text">LINEで相談する<small>24時間受け付けています</small></span>
+    </a>
+    <p class="tel-number">お電話 <b>0120-000-000</b>（仮）</p>
+  </section>
+
+  <!-- ⑫ フッター -->
+  <footer class="footer">
+    <div class="sitename">町の便利屋</div>
+    <ul>
+      <li><a href="#company">会社概要</a></li>
+      <li><a href="#law">特定商取引法に基づく表記</a></li>
+      <li><a href="#privacy">プライバシーポリシー</a></li>
+    </ul>
+    <p>© 町の便利屋（仮）</p>
+  </footer>
+</div>
+
+<!-- 画面下の固定バー -->
+<nav class="fixed-bar" aria-label="いつでも相談">
+  <div class="inner">
+    <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg>電話</a>
+    <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg>LINE</a>
+  </div>
+</nav>
