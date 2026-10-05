@@ -4,63 +4,49 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Zen+Maru+Gothic:wght@700&display=swap">
 <style>
 /* Layout: スマホ1カラム（最大560px）。共感 → なぜ便利屋 → なぜ町の便利屋 → 実例 → 安心の取り組み → 料金 → 不安の解消 → 会社情報 → 相談 */
-/* 配色「藍とあんず」：信頼の藍（電話ボタン・見出しまわり）＋やわらかいあんず色（強調・背景）＋温かみのある白 */
+/* 配色：白を基調に、信頼の藍（電話ボタン・見出しまわり）と、あんず色（料金・強調）を少しだけ */
 :root {
-  --bg: #FFFBF5;
-  --tint: #FBF1E4;
+  --bg: #FFFFFF;
+  --tint: #F5F6F8;
   --tint2: #EEF2F8;
-  --ink: #33302C;
-  --muted: #5E5A55;
-  --rule: #E7DCCF;
+  --ink: #26282C;
+  --muted: #555A61;
+  --rule: #E1E4E9;
   --primary: #2E4A7D;
   --primary-ink: #2E4A7D;
   --primary-shadow: #1C2F52;
   --accent: #F2B661;
   --accent-ink: #A64C16;
-  --accent-soft: #FDEBD3;
-  --on-accent: #33302C;
+  --accent-soft: #FFF4E6;
+  --on-accent: #26282C;
   --line: #05994A;
   --line-shadow: #04692F;
   --on-fill: #FFFFFF;
-  --photo: #ECE3D8;
+  --photo: #E9ECEF;
   --display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "BIZ UDPGothic", sans-serif;
   --font: "BIZ UDPGothic", "Hiragino Sans", "Meiryo", sans-serif;
   --fs: 1.125rem;
   --fs-s: 1rem;
   --tap: 3.75rem;
-  --r: 14px;
+  --r: 12px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #17191F; --tint: #241F1A; --tint2: #1C2230; --ink: #F1EEE9; --muted: #C2BDB5; --rule: #3A3833;
-    --primary: #3F66A8; --primary-ink: #A9C1EC; --primary-shadow: #1C2F52; --accent: #F2B661; --accent-ink: #F2B661; --accent-soft: #3A2C1C;
+    --bg: #16181D; --tint: #1F2229; --tint2: #1C2230; --ink: #EEF0F3; --muted: #BCC1C8; --rule: #33373F;
+    --primary: #3F66A8; --primary-ink: #A9C1EC; --primary-shadow: #1C2F52; --accent: #F2B661; --accent-ink: #F2B661; --accent-soft: #33291C;
     --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #2A2C33;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #17191F; --tint: #241F1A; --tint2: #1C2230; --ink: #F1EEE9; --muted: #C2BDB5; --rule: #3A3833;
-  --primary: #3F66A8; --primary-ink: #A9C1EC; --primary-shadow: #1C2F52; --accent: #F2B661; --accent-ink: #F2B661; --accent-soft: #3A2C1C;
+  --bg: #16181D; --tint: #1F2229; --tint2: #1C2230; --ink: #EEF0F3; --muted: #BCC1C8; --rule: #33373F;
+  --primary: #3F66A8; --primary-ink: #A9C1EC; --primary-shadow: #1C2F52; --accent: #F2B661; --accent-ink: #F2B661; --accent-soft: #33291C;
   --line: #05994A; --line-shadow: #03461F; --on-fill: #FFFFFF; --photo: #2A2C33;
   color-scheme: dark;
 }
-/* 比較用：前の配色（ローズ） */
-:root[data-palette="rose"] {
-  --bg: #FFFCFA; --tint: #FBF0ED; --tint2: #EEF3EE; --ink: #3A2F2D; --muted: #6B5B57; --rule: #E6D6D0;
-  --primary: #C24D5C; --primary-ink: #B03F4F; --primary-shadow: #8E3341; --accent: #F6C9CF; --accent-ink: #B03F4F; --accent-soft: #FCE6E6; --photo: #EFE4E0;
-}
-@media (prefers-color-scheme: dark) {
-  :root[data-palette="rose"]:not([data-theme="light"]) {
-    --bg: #1D1716; --tint: #2A201F; --tint2: #1F2622; --ink: #F5ECEA; --muted: #CDBDB8; --rule: #433633;
-    --primary: #C24D5C; --primary-ink: #F29AA5; --primary-shadow: #6E2732; --accent-ink: #F29AA5; --accent-soft: #3A2427; --photo: #33292A;
-  }
-}
-:root[data-palette="rose"][data-theme="dark"] {
-  --bg: #1D1716; --tint: #2A201F; --tint2: #1F2622; --ink: #F5ECEA; --muted: #CDBDB8; --rule: #433633;
-  --primary: #C24D5C; --primary-ink: #F29AA5; --primary-shadow: #6E2732; --accent-ink: #F29AA5; --accent-soft: #3A2427; --photo: #33292A;
-}
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body {
@@ -80,8 +66,8 @@ a:focus-visible, summary:focus-visible { outline: 4px solid var(--primary); outl
 
 /* セクション */
 .band { margin-inline: -16px; padding: 2.75rem 16px; scroll-margin-top: 0.5rem; }
-.band.blush { background: var(--tint); }
-.band.sage { background: var(--tint2); }
+.band { border-top: 1px solid var(--rule); }
+.band.blush, .band.sage { background: var(--bg); }
 .band > .in { max-width: 35rem; margin-inline: auto; display: grid; gap: 1.25rem; }
 .kicker { font-size: var(--fs-s); font-weight: 700; color: var(--accent-ink); }
 h2 { font-size: 1.625rem; }
@@ -98,11 +84,6 @@ h2 { font-size: 1.625rem; }
 .btn-line { background: var(--line); box-shadow: 0 3px 0 var(--line-shadow); }
 .cta-pair { display: grid; gap: 0.75rem; }
 .cta-note { text-align: center; font-size: var(--fs-s); color: var(--muted); }
-
-/* 比較用の配色切り替え（確認用。公開時は削除） */
-.review { margin-inline: -16px; padding: 0.5rem 16px; background: #2B2B2B; color: #FFFFFF; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; font-size: 0.875rem; }
-.review button { font: inherit; font-weight: 700; border: 1px solid #FFFFFF; background: transparent; color: #FFFFFF; border-radius: 999px; padding: 0.125rem 0.75rem; cursor: pointer; min-height: 2.25rem; }
-.review button[aria-pressed="true"] { background: #FFFFFF; color: #2B2B2B; }
 
 /* ① ヘッダー */
 .header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding-block: 0.75rem; }
@@ -135,7 +116,7 @@ h2 { font-size: 1.625rem; }
 
 /* ③ 共感 */
 .pains { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; }
-.pains li { background: var(--bg); border-radius: 10px; padding: 0.875rem 1rem 0.875rem 3rem; position: relative; font-weight: 700; }
+.pains li { background: var(--tint); border-radius: 10px; padding: 0.875rem 1rem 0.875rem 3rem; position: relative; font-weight: 700; }
 .pains li::before { content: ""; position: absolute; left: 1rem; top: 1.15rem; width: 1.25rem; height: 1.25rem; border-radius: 4px; border: 2px solid var(--primary); }
 .pains li::after { content: ""; position: absolute; left: 1.42rem; top: 1.2rem; width: 0.4rem; height: 0.75rem; border: solid var(--primary); border-width: 0 3px 3px 0; transform: rotate(45deg); }
 
@@ -189,8 +170,38 @@ h2 { font-size: 1.625rem; }
 .case .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; font-size: var(--fs-s); color: var(--muted); border-top: 1px dashed var(--rule); padding-top: 0.5rem; }
 .case .yen { color: var(--accent-ink); font-weight: 700; font-size: 1.375rem; font-variant-numeric: tabular-nums; }
 .case .yen small { font-size: 0.875rem; font-weight: 400; color: var(--muted); }
-.case blockquote { margin: 0; background: var(--tint); padding: 0.75rem 1rem; border-radius: 10px; font-size: var(--fs-s); }
+.case blockquote { margin: 0; background: var(--accent-soft); padding: 0.75rem 1rem; border-radius: 10px; font-size: var(--fs-s); }
 .more { display: flex; align-items: center; justify-content: center; min-height: 3.25rem; border: 2px solid var(--primary); border-radius: 999px; color: var(--primary-ink); font-weight: 700; text-decoration: none; }
+
+/* できること（分野ごとに開く一覧） */
+.catalog { display: grid; gap: 0.625rem; }
+.cat { border: 1px solid var(--rule); border-radius: var(--r); background: var(--bg); overflow: hidden; }
+.cat summary { padding: 0.625rem 3rem 0.625rem 0.625rem; gap: 0.875rem; min-height: 5rem; }
+.cat summary::before { content: none; }
+.cat summary img { width: 4rem; height: 4rem; flex: none; object-fit: cover; border-radius: 8px; }
+.cat-name { display: grid; font-size: 1.125rem; line-height: 1.4; }
+.cat-name small { font-size: 0.875rem; font-weight: 400; color: var(--muted); }
+.cat[open] summary { border-bottom: 1px solid var(--rule); }
+.items { list-style: none; margin: 0; padding: 0.5rem 1rem; display: grid; }
+.items li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; border-bottom: 1px dashed var(--rule); font-size: var(--fs-s); }
+.items li:last-child { border-bottom: 0; }
+.items li::before { content: ""; position: absolute; left: 0.25rem; top: 1.05em; width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent); }
+.cat-cases { display: flex; align-items: center; justify-content: center; min-height: 3rem; margin: 0 1rem 1rem; border-radius: 999px; background: var(--tint2); color: var(--primary-ink); font-weight: 700; font-size: var(--fs-s); text-decoration: none; }
+.also { text-align: center; font-weight: 700; }
+
+/* ご依頼の例：しぼりこみ */
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { font: inherit; font-size: var(--fs-s); font-weight: 700; min-height: 2.75rem; padding: 0.25rem 0.875rem; border-radius: 999px; border: 1px solid var(--rule); background: var(--bg); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 0.375rem; }
+.chip span { font-size: 0.8125rem; color: var(--muted); font-weight: 400; }
+.chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--on-fill); }
+.chip[aria-pressed="true"] span { color: var(--on-fill); }
+.chip:focus-visible { outline: 4px solid var(--accent); outline-offset: 2px; }
+.case .who { font-size: 0.875rem; color: var(--muted); }
+.detail { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 0.75rem; font-size: var(--fs-s); }
+.detail dt { color: var(--muted); font-size: 0.875rem; padding-top: 0.125rem; white-space: nowrap; }
+.detail dd { margin: 0; }
+.case .tag { background: var(--tint2); color: var(--primary-ink); }
+button.more { font: inherit; background: var(--bg); width: 100%; cursor: pointer; }
 
 /* 途中の相談 */
 .mid-cta { background: var(--bg); border: 2px solid var(--accent-soft); border-radius: var(--r); padding: 1.25rem 1rem; display: grid; gap: 0.75rem; }
@@ -200,11 +211,11 @@ h2 { font-size: 1.625rem; }
 .team { border-radius: var(--r); overflow: hidden; }
 .team img { aspect-ratio: 3 / 2; object-fit: cover; }
 .promises { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.625rem; counter-reset: p; }
-.promises li { background: var(--bg); border-radius: 10px; padding: 1rem 1rem 1rem 3.5rem; position: relative; counter-increment: p; }
+.promises li { background: var(--tint); border-radius: 10px; padding: 1rem 1rem 1rem 3.5rem; position: relative; counter-increment: p; }
 .promises li::before { content: counter(p); position: absolute; left: 1rem; top: 1rem; width: 1.75rem; height: 1.75rem; border-radius: 50%; background: var(--primary); color: var(--on-fill); font-family: var(--display); font-size: 1rem; display: grid; place-items: center; }
 .promises b { display: block; font-size: 1.0625rem; }
 .promises span { display: block; color: var(--muted); font-size: var(--fs-s); }
-.message { background: var(--bg); border-radius: var(--r); padding: 1.25rem; display: grid; gap: 0.75rem; border-top: 4px solid var(--primary); }
+.message { background: var(--tint); border-radius: var(--r); padding: 1.25rem; display: grid; gap: 0.75rem; border-top: 4px solid var(--primary); }
 .message h3 { font-family: var(--display); font-size: 1.25rem; }
 .message p { font-size: var(--fs-s); }
 .message .sign { text-align: right; color: var(--muted); }
@@ -227,7 +238,7 @@ h2 { font-size: 1.625rem; }
 
 /* ⑩ 声 */
 .voices { display: grid; gap: 0.75rem; }
-.voice { background: var(--bg); border-radius: var(--r); padding: 1rem 1.125rem; }
+.voice { background: var(--tint); border-radius: var(--r); padding: 1rem 1.125rem; }
 .voice .who { font-size: 0.875rem; color: var(--muted); margin-top: 0.375rem; }
 
 /* ⑪ 流れ */
@@ -279,11 +290,6 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 </svg>
 
 <div class="page">
-  <div class="review" role="group" aria-label="配色の比較（確認用）">
-    <span>配色：</span>
-    <button type="button" id="pal-ai" aria-pressed="true">藍とあんず</button>
-    <button type="button" id="pal-rose" aria-pressed="false">ローズ</button>
-  </div>
 
   <!-- ① ヘッダー -->
   <header class="header">
@@ -319,10 +325,10 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
   <nav class="toc" aria-label="このページの内容">
     <p>知りたいところへ移動できます</p>
     <ul>
-      <li><a href="#price">料金</a></li>
+      <li><a href="#menu">できること</a></li>
       <li><a href="#cases">ご依頼の例</a></li>
+      <li><a href="#price">料金</a></li>
       <li><a href="#safety">安心の取り組み</a></li>
-      <li><a href="#company">会社のこと</a></li>
     </ul>
   </nav>
 
@@ -356,22 +362,55 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
     </div>
   </section>
 
-  <!-- ⑤ 頼めること -->
+  <!-- ⑤ できること -->
   <section class="band sage" id="menu">
     <div class="in">
-      <p class="kicker">頼めること</p>
-      <h2>何にお困りですか？</h2>
-      <p class="lead">近いものを押すと、くわしい内容と料金が見られます。</p>
-      <ul class="tiles">
-        <li><a class="tile" href="#menu"><img src="img/faucet.jpg" alt="" width="600" height="600" loading="lazy"><span>電球・水まわり</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/case-chest.jpg" alt="" width="600" height="600" loading="lazy"><span>家具の移動</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/case-shelf.jpg" alt="" width="600" height="600" loading="lazy"><span>組み立て</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/garbage.jpg" alt="" width="600" height="600" loading="lazy"><span>ゴミ出し</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/case-visit.jpg" alt="" width="600" height="600" loading="lazy"><span>付き添い</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/shopping.jpg" alt="" width="600" height="600" loading="lazy"><span>買い物</span></a></li>
-        <li><a class="tile" href="#menu"><img src="img/garden.jpg" alt="" width="600" height="600" loading="lazy"><span>庭・草むしり</span></a></li>
-        <li><a class="tile other" href="#menu"><b>？</b><span>ほかのことも<br>ご相談ください</span></a></li>
-      </ul>
+      <p class="kicker">できること</p>
+      <h2>こんなことを<br>お手伝いしています</h2>
+      <p class="lead">8つの分野・49項目以上。押すと、くわしい内容が開きます。</p>
+      <div class="catalog">
+        <details class="cat" open>
+          <summary><img src="img/case-shelf.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">家の中の作業<small>取り付け・組み立て・10項目</small></span></summary>
+          <ul class="items"><li>電球・照明の交換（天井の照明も）</li><li>家具の組み立て</li><li>カーテン・カーテンレールの取り付け</li><li>棚・フック・表札の取り付け</li><li>網戸の張り替え</li><li>障子・ふすまの張り替え</li><li>テレビ・レコーダーの配線</li><li>電池の交換・時計合わせ</li><li>固いビンのふたを開ける</li><li>換気扇フィルターの交換</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="home">「家の中の作業」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/case-chest.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">力仕事・家具の移動<small>重い物はおまかせ・6項目</small></span></summary>
+          <ul class="items"><li>家具・家電の移動、配置替え</li><li>重い物の上げ下ろし</li><li>扇風機・ヒーターの出し入れ</li><li>布団・マットレスの運び出し</li><li>2階への荷物運び</li><li>引越しの荷造り・荷ほどき</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="power">「力仕事・家具の移動」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/faucet.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">水まわりの簡単な修理<small>ポタポタ・つまりに・5項目</small></span></summary>
+          <ul class="items"><li>蛇口のパッキン交換（水もれ）</li><li>シャワーヘッド・ホースの交換</li><li>排水口のそうじ</li><li>トイレの軽いつまり</li><li>洗濯機ホースの取り付け</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="water">「水まわりの簡単な修理」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/garbage.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">掃除・片付け・ゴミ出し<small>ひとりでは手が回らない・6項目</small></span></summary>
+          <ul class="items"><li>部屋の片付け・整理</li><li>実家の片付け・遺品の仕分け</li><li>大掃除・窓ふき</li><li>衣替え・押し入れの整理</li><li>ゴミの分別と、集積所へのゴミ出し</li><li>粗大ゴミの申し込みと運び出し</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="tidy">「掃除・片付け・ゴミ出し」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/garden.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">庭・ベランダ<small>外の作業も・5項目</small></span></summary>
+          <ul class="items"><li>草むしり</li><li>庭木のかんたんな手入れ</li><li>落ち葉・ベランダのそうじ</li><li>植木鉢の移動</li><li>物置の整理</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="garden">「庭・ベランダ」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/case-visit.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">付き添い<small>おひとりでの外出が不安なとき・5項目</small></span></summary>
+          <ul class="items"><li>病院・通院の付き添い</li><li>買い物の付き添い</li><li>役所・銀行の手続きの付き添い</li><li>お墓参り</li><li>散歩・美容院への付き添い</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="escort">「付き添い」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/shopping.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">代わりに行く・お留守番<small>行けないときに・6項目</small></span></summary>
+          <ul class="items"><li>買い物の代行</li><li>順番待ち・整理券をもらう</li><li>郵便・宅配の受け取り</li><li>ペットの散歩・お世話</li><li>留守中の見回り・水やり</li><li>お墓のそうじ</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="errand">「代わりに行く・お留守番」のご依頼の例を見る</a>
+        </details>
+        <details class="cat">
+          <summary><img src="img/case-bulb.jpg" alt="" width="600" height="600" loading="lazy"><span class="cat-name">見守り・暮らしのサポート<small>離れて暮らすご家族にも・6項目</small></span></summary>
+          <ul class="items"><li>定期的な見守り訪問</li><li>話し相手</li><li>スマホ・パソコンの使い方</li><li>テレビ・電話の設定</li><li>郵便物・書類の整理と読み上げ</li><li>ご家族への写真つき報告</li></ul>
+          <a class="cat-cases" href="#cases" data-jump="watch">「見守り・暮らしのサポート」のご依頼の例を見る</a>
+        </details>
+      </div>
+      <p class="also">ここにないことも、まずはご相談ください。<br>「こんなこと頼めるかな？」というお電話も歓迎です。</p>
       <div class="ng">
         <b>当社ではお受けしていない作業</b>
         <p>電気工事・ガス工事・ゴミの回収と処分など、法律で資格や許可が必要な作業は行いません。資格・許可を持つ提携業者をご紹介します。</p>
@@ -379,7 +418,219 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
     </div>
   </section>
 
-  <!-- ⑥ なぜ町の便利屋なのか -->
+  <!-- ⑥ ご依頼の例 -->
+  <section class="band" id="cases">
+    <div class="in">
+      <p class="kicker">ご依頼の例</p>
+      <h2>あなたと同じお困りごとを<br>探してみてください</h2>
+      <p class="lead">実際にあったご依頼を19件のせています。料金はすべて出張費こみの合計です。</p>
+      <div class="chips" role="group" aria-label="分野でしぼりこむ">
+        <button type="button" class="chip" data-filter="all" aria-pressed="true">すべて<span>19</span></button><button type="button" class="chip" data-filter="home" aria-pressed="false">家の中<span>4</span></button><button type="button" class="chip" data-filter="power" aria-pressed="false">力仕事<span>2</span></button><button type="button" class="chip" data-filter="water" aria-pressed="false">水まわり<span>1</span></button><button type="button" class="chip" data-filter="tidy" aria-pressed="false">片付け<span>4</span></button><button type="button" class="chip" data-filter="garden" aria-pressed="false">庭<span>2</span></button><button type="button" class="chip" data-filter="escort" aria-pressed="false">付き添い<span>2</span></button><button type="button" class="chip" data-filter="errand" aria-pressed="false">代行<span>2</span></button><button type="button" class="chip" data-filter="watch" aria-pressed="false">見守り<span>2</span></button>
+      </div>
+      <div class="cases" id="case-list">
+          <article class="case has-img" data-cat="home">
+            <img src="img/case-bulb.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">家の中</span><span class="date">2026年9月</span></div>
+              <h3>天井の照明の交換</h3>
+              <p class="who">港区・80代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>脚立に乗るのが怖く、切れたまま1か月がまんしていた。</dd><dt>したこと</dt><dd>古い照明を外して新しい照明を取り付け。古い照明は分別してまとめました。</dd></dl>
+              <div class="meta"><span>30分・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>電話したら翌日すぐ来てくれました。もっと早く頼めばよかった。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="power">
+            <img src="img/case-chest.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">力仕事</span><span class="date">2026年9月</span></div>
+              <h3>タンスを別の部屋へ移動</h3>
+              <p class="who">世田谷区・70代の男性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>介護ベッドを入れるため、重いタンスを動かしたかった。</dd><dt>したこと</dt><dd>2人で床を傷つけないよう毛布で包んで移動。中身の出し入れもお手伝い。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ2人</span><span class="yen">11,000円<small> 合計</small></span></div>
+              <blockquote>腰を痛めていたので本当に助かりました。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="home">
+            <img src="img/case-shelf.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">家の中</span><span class="date">2026年9月</span></div>
+              <h3>本棚とテレビ台の組み立て</h3>
+              <p class="who">練馬区・30代の女性／ご依頼：ご本人（女性スタッフを指名）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>ひとり暮らしで、男性が家に来るのは不安だった。</dd><dt>したこと</dt><dd>女性スタッフが組み立てと設置、段ボールの片付けまで。</dd></dl>
+              <div class="meta"><span>1時間30分・スタッフ1人</span><span class="yen">7,150円<small> 合計</small></span></div>
+              <blockquote>女性の方に来てもらえて、安心してお願いできました。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="escort">
+            <img src="img/case-visit.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">付き添い</span><span class="date">2026年8月</span></div>
+              <h3>病院への付き添い</h3>
+              <p class="who">杉並区・70代の女性／ご依頼：娘さま（大阪在住）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>遠くに住んでいて、母の通院に付き添えない。</dd><dt>したこと</dt><dd>ご自宅から病院まで付き添い、受付と会計をお手伝い。ようすを写真つきで娘さまにLINEでご報告。</dd></dl>
+              <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+              <blockquote>離れていても様子がわかって安心しました。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="water">
+            <img src="img/faucet.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">水まわり</span><span class="date">2026年8月</span></div>
+              <h3>台所の蛇口の水もれ</h3>
+              <p class="who">台東区・70代の男性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>夜中もポタポタと音がして眠れない。</dd><dt>したこと</dt><dd>蛇口のパッキンを交換。部品代550円もお見積もりに含めてお伝えしました。</dd></dl>
+              <div class="meta"><span>30分・スタッフ1人</span><span class="yen">6,050円<small> 合計（材料費550円こみ）</small></span></div>
+              <blockquote>水道屋さんに頼むほどでもないと思っていたので、気軽に頼めてよかった。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="tidy">
+            <img src="img/garbage.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">片付け</span><span class="date">2026年8月</span></div>
+              <h3>粗大ゴミの運び出し</h3>
+              <p class="who">足立区・70代の男性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>古いソファを区の指定の場所まで運べない。</dd><dt>したこと</dt><dd>粗大ゴミの申し込みをお手伝いし、収集日の朝に指定の場所まで運び出し。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">8,800円<small> 合計（車を使用）</small></span></div>
+              <blockquote>申し込みの電話から全部やってもらえて楽でした。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="garden">
+            <img src="img/garden.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">庭</span><span class="date">2026年7月</span></div>
+              <h3>庭の草むしり</h3>
+              <p class="who">大田区・70代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>夏になって草が伸び放題。しゃがむのがつらい。</dd><dt>したこと</dt><dd>草むしりと、むしった草のゴミ袋詰め・ゴミ出しの準備まで。</dd></dl>
+              <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+              <blockquote>見違えるほどきれいになりました。毎年お願いしたいです。</blockquote>
+            </div>
+          </article>
+          <article class="case has-img" data-cat="errand">
+            <img src="img/shopping.jpg" alt="" width="1200" height="900" loading="lazy"><div class="body">
+              <div class="top"><span class="tag">代行</span><span class="date">2026年9月</span></div>
+              <h3>毎週の買い物の代行</h3>
+              <p class="who">目黒区・80代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>重いお米や飲み物を買って帰るのがつらい。</dd><dt>したこと</dt><dd>毎週火曜日に、メモをもとにスーパーで買い物。レシートとおつりを確認していただいてお渡し。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>同じ方が来てくれるので安心です。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="home">
+            <div class="body">
+              <div class="top"><span class="tag">家の中</span><span class="date">2026年9月</span></div>
+              <h3>カーテンレールの取り付け</h3>
+              <p class="who">渋谷区・20代の女性／ご依頼：ご本人（女性スタッフを指名）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>引越し先にカーテンレールがなく、道具もない。</dd><dt>したこと</dt><dd>女性スタッフが下地を確認してレールを取り付け、カーテンも掛けました。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>夜までにカーテンが付いて、ほっとしました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="home">
+            <div class="body">
+              <div class="top"><span class="tag">家の中</span><span class="date">2026年8月</span></div>
+              <h3>網戸の張り替え（2枚）</h3>
+              <p class="who">大田区・70代のご夫婦／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>網戸が破れて虫が入ってくる。</dd><dt>したこと</dt><dd>2枚とも新しい網に張り替え。網の材料費1,100円もお見積もりに含めてお伝えしました。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">6,600円<small> 合計（材料費1,100円こみ）</small></span></div>
+              <blockquote>自分でやろうとして失敗していたので、頼んでよかった。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="tidy">
+            <div class="body">
+              <div class="top"><span class="tag">片付け</span><span class="date">2026年8月</span></div>
+              <h3>実家の片付けと仕分け</h3>
+              <p class="who">品川区・50代の女性／ご依頼：ご本人（ご実家の片付け）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>母が施設に入り、実家を片付けたいが仕事で時間がない。</dd><dt>したこと</dt><dd>2人で「残す・ゆずる・捨てる」に仕分け。捨てる物は許可を持つ提携業者に引き渡しました。</dd></dl>
+              <div class="meta"><span>3時間・スタッフ2人</span><span class="yen">24,200円<small> 合計</small></span></div>
+              <blockquote>仕分けのたびに写真で確認してくれて、離れていても進められました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="tidy">
+            <div class="body">
+              <div class="top"><span class="tag">片付け</span><span class="date">2026年7月</span></div>
+              <h3>衣替えと押し入れの整理</h3>
+              <p class="who">中野区・80代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>押し入れの上の段に手が届かない。</dd><dt>したこと</dt><dd>冬物と夏物の入れ替え、よく使う物を取り出しやすい場所に移動。</dd></dl>
+              <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+              <blockquote>どこに何があるか分かるようにしてくれました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="tidy">
+            <div class="body">
+              <div class="top"><span class="tag">片付け</span><span class="date">2026年9月</span></div>
+              <h3>引越しの荷ほどき</h3>
+              <p class="who">江東区・30代の女性／ご依頼：ご本人（女性スタッフを指名）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>段ボールが片付かず、仕事が忙しくて手が回らない。</dd><dt>したこと</dt><dd>女性スタッフが食器・衣類の荷ほどきと収納。空いた段ボールをまとめました。</dd></dl>
+              <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+              <blockquote>2時間で部屋らしくなりました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="garden">
+            <div class="body">
+              <div class="top"><span class="tag">庭</span><span class="date">2026年7月</span></div>
+              <h3>植木鉢の移動とベランダのそうじ</h3>
+              <p class="who">文京区・60代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>大きな植木鉢が重くて動かせない。</dd><dt>したこと</dt><dd>植木鉢を移動して、ベランダの排水口と床をそうじ。</dd></dl>
+              <div class="meta"><span>1時間30分・スタッフ1人</span><span class="yen">7,150円<small> 合計</small></span></div>
+              <blockquote>ずっと気になっていた所がきれいになりました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="escort">
+            <div class="body">
+              <div class="top"><span class="tag">付き添い</span><span class="date">2026年8月</span></div>
+              <h3>区役所の手続きの付き添い</h3>
+              <p class="who">北区・80代の男性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>窓口がたくさんあって、どこへ行けばいいか分からない。</dd><dt>したこと</dt><dd>ご自宅から区役所まで付き添い、窓口の案内と書類の確認をお手伝い。</dd></dl>
+              <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
+              <blockquote>ひとりでは一日がかりだったと思います。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="errand">
+            <div class="body">
+              <div class="top"><span class="tag">代行</span><span class="date">2026年9月</span></div>
+              <h3>出張中のペットの世話</h3>
+              <p class="who">新宿区・40代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>3日間の出張中、猫の世話をしてくれる人がいない。</dd><dt>したこと</dt><dd>1日1回うかがい、えさと水、トイレのそうじ。毎日写真でご報告。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>毎日写真が届いて、安心して仕事ができました。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="watch">
+            <div class="body">
+              <div class="top"><span class="tag">見守り</span><span class="date">2026年9月</span></div>
+              <h3>スマホの設定と使い方</h3>
+              <p class="who">葛飾区・70代の女性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>孫とLINEをしたいけれど、やり方が分からない。</dd><dt>したこと</dt><dd>LINEの設定と、写真の送り方・ビデオ通話のやり方を、紙に書いてご説明。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>紙に書いてくれたので、あとからでも分かります。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="watch">
+            <div class="body">
+              <div class="top"><span class="tag">見守り</span><span class="date">2026年8月</span></div>
+              <h3>ひとり暮らしの母の見守り訪問</h3>
+              <p class="who">江戸川区・80代の女性／ご依頼：息子さま（福岡在住）</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>電話だけでは、母の本当の様子が分からない。</dd><dt>したこと</dt><dd>月に2回うかがい、お話をしながら困りごとを確認。電球交換などもその場で。ようすを写真つきでご報告。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
+              <blockquote>母も楽しみにしているようです。</blockquote>
+            </div>
+          </article>
+          <article class="case" data-cat="power">
+            <div class="body">
+              <div class="top"><span class="tag">力仕事</span><span class="date">2026年7月</span></div>
+              <h3>2階への家具の運び上げ</h3>
+              <p class="who">板橋区・60代の男性／ご依頼：ご本人</p>
+              <dl class="detail"><dt>お困りごと</dt><dd>通販で買った棚を、2階の部屋まで運べない。</dd><dt>したこと</dt><dd>2人で階段を傷つけないよう養生して運び上げ、設置まで。</dd></dl>
+              <div class="meta"><span>1時間・スタッフ2人</span><span class="yen">11,000円<small> 合計</small></span></div>
+              <blockquote>狭い階段でも手際よく運んでくれました。</blockquote>
+            </div>
+          </article>
+      </div>
+      <button type="button" class="more" id="case-more">ほかのご依頼も見る</button>
+      <div class="mid-cta">
+        <p>同じようなことで困っていませんか？</p>
+        <div class="cta-pair">
+          <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>電話で相談する<small>通話無料・毎日9時〜20時</small></span></a>
+          <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>24時間受付</small></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑦ なぜ町の便利屋なのか -->
   <section class="band">
     <div class="in">
       <p class="kicker">町の便利屋が選ばれる理由</p>
@@ -399,52 +650,6 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
         </table>
       </div>
       <p class="fine">※「よくある便利屋」は、東京で営業する便利屋の公式サイトの表示（2026年10月時点）をもとにした一般的な例です。特定の会社を指すものではありません。</p>
-    </div>
-  </section>
-
-  <!-- ⑦ 事例 -->
-  <section class="band sage" id="cases">
-    <div class="in">
-      <p class="kicker">ご依頼の例</p>
-      <h2>こんなふうに<br>お手伝いしています</h2>
-      <p class="lead">料金はすべて出張費こみの合計です。</p>
-      <div class="cases">
-        <article class="case">
-          <img src="img/case-shelf.jpg" alt="本棚を組み立てる女性スタッフ" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <div class="top"><span class="tag">練馬区・30代の女性</span><span class="date">2026年9月</span></div>
-            <h3>本棚の組み立て（女性スタッフを指名）</h3>
-            <div class="meta"><span>1時間30分・スタッフ1人</span><span class="yen">7,150円<small> 合計</small></span></div>
-            <blockquote>女性の方に来てもらえて、ひとり暮らしでも安心でした。</blockquote>
-          </div>
-        </article>
-        <article class="case">
-          <img src="img/case-bulb.jpg" alt="脚立に乗って天井の電球を替えるスタッフと、見守るお客様" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <div class="top"><span class="tag">港区・80代の女性</span><span class="date">2026年9月</span></div>
-            <h3>高いところの電球交換</h3>
-            <div class="meta"><span>20分・スタッフ1人</span><span class="yen">5,500円<small> 合計</small></span></div>
-            <blockquote>脚立に乗るのが怖くて。電話したら翌日すぐ来てくれました。</blockquote>
-          </div>
-        </article>
-        <article class="case">
-          <img src="img/case-visit.jpg" alt="お年寄りと腕を組んで歩く女性スタッフ" width="1200" height="900" loading="lazy">
-          <div class="body">
-            <div class="top"><span class="tag">杉並区・70代の女性（娘さまから依頼）</span><span class="date">2026年8月</span></div>
-            <h3>病院への付き添い</h3>
-            <div class="meta"><span>2時間・スタッフ1人</span><span class="yen">8,800円<small> 合計</small></span></div>
-            <blockquote>遠くに住んでいて行けないので、LINEで頼めて助かりました。</blockquote>
-          </div>
-        </article>
-        <a class="more" href="#cases">ほかのご依頼も見る</a>
-      </div>
-      <div class="mid-cta">
-        <p>同じようなことで困っていませんか？</p>
-        <div class="cta-pair">
-          <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg><span>電話で相談する<small>通話無料・毎日9時〜20時</small></span></a>
-          <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg><span>LINEで相談する<small>24時間受付</small></span></a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -503,7 +708,7 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
           <p style="font-weight:700; margin-bottom:0.375rem">お支払い方法（作業が終わってから）</p>
           <ul class="pay"><li>現金</li><li>クレジットカード</li><li>PayPay</li><li>銀行振込</li></ul>
         </div>
-        <p class="fine">※金額・キャンセル料は仮のものです。駐車場がない場合のコインパーキング代は当社が負担します。</p>
+        <p class="fine">※部品や材料が必要な場合は、その代金もお見積もりに含めてお伝えします。※金額・キャンセル料は仮のものです。駐車場がない場合のコインパーキング代は当社が負担します。</p>
       </div>
       <div class="mid-cta">
         <p>あなたの場合の金額を<br>無料でお伝えします</p>
@@ -623,18 +828,33 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
     bar.classList.toggle('is-hidden', e.isIntersecting || e.boundingClientRect.top > 0);
   }).observe(cta);
 })();
-// 配色の比較（確認用）
+// ご依頼の例：分野でしぼりこみ、最初は6件だけ表示
 (function () {
-  var root = document.documentElement, a = document.getElementById('pal-ai'), r = document.getElementById('pal-rose');
-  function set(rose) {
-    if (rose) root.setAttribute('data-palette', 'rose'); else root.removeAttribute('data-palette');
-    a.setAttribute('aria-pressed', String(!rose)); r.setAttribute('aria-pressed', String(rose));
-    try { localStorage.setItem('palette', rose ? 'rose' : 'ai'); } catch (e) {}
+  var list = document.getElementById('case-list');
+  var cards = [].slice.call(list.querySelectorAll('.case'));
+  var chips = [].slice.call(document.querySelectorAll('.chip'));
+  var more = document.getElementById('case-more');
+  var current = 'all', expanded = false, FIRST = 6;
+  function render() {
+    var shown = 0;
+    cards.forEach(function (c) {
+      var match = current === 'all' || c.getAttribute('data-cat') === current;
+      var visible = match && (current !== 'all' || expanded || shown < FIRST);
+      if (visible) shown++;
+      c.hidden = !visible;
+    });
+    var rest = cards.filter(function (c) { return current === 'all' && c.hidden; }).length;
+    more.hidden = rest === 0;
+    more.textContent = 'ほかのご依頼も見る（あと' + rest + '件）';
+    chips.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === current)); });
   }
-  var saved = null; try { saved = localStorage.getItem('palette'); } catch (e) {}
-  set(saved === 'rose');
-  a.addEventListener('click', function () { set(false); });
-  r.addEventListener('click', function () { set(true); });
+  function select(cat) { current = cat; expanded = false; render(); }
+  chips.forEach(function (b) { b.addEventListener('click', function () { select(b.getAttribute('data-filter')); }); });
+  more.addEventListener('click', function () { expanded = true; render(); });
+  [].forEach.call(document.querySelectorAll('[data-jump]'), function (a) {
+    a.addEventListener('click', function () { select(a.getAttribute('data-jump')); });
+  });
+  render();
 })();
 // 受付時間中かどうかを表示（東京の時刻で 9:00〜20:00）
 (function () {
