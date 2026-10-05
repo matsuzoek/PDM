@@ -64,40 +64,43 @@ h2 { font-size: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--r
 h2::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 4rem; height: 4px; background: var(--yellow); }
 .lead { color: var(--muted); }
 
-/* 上の細い帯 */
-.topline { margin-inline: -16px; background: var(--green); color: var(--on-fill); font-size: var(--fs-s); text-align: center; padding: 0.375rem 16px; font-weight: 700; }
-
-/* ① ヘッダー */
-.header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 0.875rem; border-bottom: 1px solid var(--rule); }
-.sitename { font-weight: 700; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--green-ink); }
-.sitename small { display: block; font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; line-height: 1.3; }
-.hours { font-size: var(--fs-s); text-align: right; line-height: 1.45; }
-.hours b { display: block; }
+/* ① ヘッダー（1行にまとめる） */
+.header { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding-block: 0.75rem; }
+.sitename { font-weight: 700; font-size: 1.5rem; letter-spacing: 0.06em; color: var(--green-ink); line-height: 1.2; }
+.sitename small { display: block; font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--muted); font-weight: 400; line-height: 1.4; margin-top: 0.125rem; }
+.status { display: inline-flex; align-items: center; gap: 0.375rem; font-size: 0.875rem; font-weight: 700; line-height: 1.35; text-align: right; }
+.status::before { content: ""; width: 0.625rem; height: 0.625rem; border-radius: 50%; background: var(--line); flex: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--line) 25%, transparent); }
+.status.closed::before { background: var(--muted); box-shadow: none; }
 
 /* ② CTA */
-.cta { display: grid; gap: 0.875rem; padding-block: 1.25rem 1.5rem; }
-.cta-lead { font-weight: 700; font-size: 1.25rem; text-align: center; }
+.cta { display: grid; gap: 0.625rem; padding-block: 0.25rem 1rem; }
 .btn { display: flex; align-items: center; justify-content: center; gap: 0.75rem; min-height: var(--tap); padding: 0.75rem 1rem; border-radius: 6px; color: var(--on-fill); text-decoration: none; font-weight: 700; font-size: 1.25rem; line-height: 1.3; }
 .btn svg { width: 1.75rem; height: 1.75rem; flex: none; }
-.btn-tel { background: var(--green); flex-direction: column; gap: 0.25rem; padding-block: 0.875rem; box-shadow: 0 3px 0 var(--green-shadow); }
+.btn-tel { background: var(--green); flex-direction: column; gap: 0.125rem; padding-block: 0.625rem 0.75rem; box-shadow: 0 3px 0 var(--green-shadow); }
 .btn-tel .row { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
 .btn-tel .num { font-size: 2rem; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
 .btn-tel .free { background: var(--yellow); color: var(--on-yellow); font-size: 0.875rem; padding: 0.125rem 0.5rem; border-radius: 3px; }
 .btn-tel .sub { font-size: var(--fs-s); font-weight: 400; }
 .btn-line { background: var(--line); box-shadow: 0 3px 0 var(--line-shadow); }
-.btn-line small { display: block; font-size: var(--fs-s); font-weight: 400; }
+.btn-line small { display: block; font-size: 0.875rem; font-weight: 400; }
 
-/* ③ キービジュアル */
+/* ③ キービジュアル：写真の上にコピーを重ねる */
 .kv { margin-inline: -16px; }
-.kv img { aspect-ratio: 3 / 2; object-fit: cover; }
-.kv-copy { background: var(--green); color: var(--on-fill); padding: 1rem 16px 1.25rem; }
-.kv-copy h1 { font-size: 1.625rem; letter-spacing: 0.02em; }
+.kv-photo { position: relative; }
+.kv-photo img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 20%; }
+.kv-photo::after { content: ""; position: absolute; inset: 35% 0 0; background: linear-gradient(to bottom, rgb(10 30 25 / 0), rgb(10 30 25 / 0.82)); pointer-events: none; }
+.kv-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 0 16px 1rem; color: #FFFFFF; text-shadow: 0 1px 8px rgb(0 0 0 / 0.35); }
+.kv-copy .area-badge { display: inline-block; background: var(--yellow); color: var(--on-yellow); text-shadow: none; font-weight: 700; font-size: 0.875rem; padding: 0.125rem 0.625rem; border-radius: 3px; margin-bottom: 0.5rem; }
+.kv-copy h1 { font-size: 1.875rem; line-height: 1.35; letter-spacing: 0.02em; }
 .nw { display: inline-block; }
-.kv-copy p { font-size: var(--fs-s); margin-top: 0.25rem; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--rule); }
-.fact { padding: 0.875rem 0.375rem; text-align: center; line-height: 1.4; font-size: 0.9375rem; }
-.fact + .fact { border-left: 1px solid var(--rule); }
-.fact b { display: block; font-size: 1.125rem; color: var(--red); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--green); color: var(--on-fill); }
+.fact { padding: 0.75rem 0.25rem; text-align: center; line-height: 1.35; font-size: 0.875rem; }
+.fact + .fact { border-left: 1px solid rgb(255 255 255 / 0.25); }
+.fact b { display: block; font-size: 1.25rem; color: var(--yellow); letter-spacing: 0.02em; }
+.can { padding: 0.875rem 16px 0; display: grid; gap: 0.5rem; }
+.can p { font-weight: 700; font-size: var(--fs-s); }
+.can ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.375rem; }
+.can li { border: 1px solid var(--rule); border-radius: 999px; padding: 0.125rem 0.75rem; font-size: 0.9375rem; background: var(--band); }
 
 /* ④ 事例 */
 .cases { display: grid; gap: 1.5rem; }
@@ -189,8 +192,10 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
 .footer a { color: var(--ink); }
 
-/* 固定バー */
-.fixed-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--bg); border-top: 1px solid var(--rule); padding: 0.625rem 16px calc(0.625rem + env(safe-area-inset-bottom, 0px)); }
+/* 固定バー（上の電話ボタンが見えている間は隠す） */
+.fixed-bar.is-hidden { transform: translateY(110%); }
+@media (prefers-reduced-motion: reduce) { .fixed-bar { transition: none; } }
+.fixed-bar { transition: transform 0.25s ease; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; background: var(--bg); border-top: 1px solid var(--rule); padding: 0.625rem 16px calc(0.625rem + env(safe-area-inset-bottom, 0px)); }
 .fixed-bar .inner { max-width: 35rem; margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
 .fixed-bar .btn { min-height: 3.5rem; flex-direction: row; padding-block: 0.5rem; font-size: 1.1875rem; }
 </style>
@@ -201,38 +206,43 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
 </svg>
 
 <div class="page">
-  <div class="topline">東京23区の便利屋　相談・お見積もり無料</div>
-
   <!-- ① ヘッダー -->
   <header class="header">
-    <div class="sitename">町の便利屋<small>電球1個から、お手伝いします</small></div>
-    <div class="hours"><b>毎日 9時〜20時</b>土日・祝日も受付</div>
+    <div class="sitename">町の便利屋<small>東京23区・相談とお見積もりは無料</small></div>
+    <div class="status" id="status">毎日 9時〜20時<br>受付</div>
   </header>
 
   <!-- ② CTA -->
-  <section class="cta" aria-label="ご相談">
-    <p class="cta-lead">お困りごと、まずはお電話ください</p>
+  <section class="cta" id="top-cta" aria-label="ご相談">
     <a class="btn btn-tel" href="tel:0120000000">
       <span class="row"><svg aria-hidden="true"><use href="#i-tel"/></svg><span class="num">0120-000-000</span></span>
-      <span class="row"><span class="free">通話無料</span><span class="sub">押すと電話がかかります（仮の番号）</span></span>
+      <span class="row"><span class="free">通話無料</span><span class="sub">押すと電話がかかります</span></span>
     </a>
     <a class="btn btn-line" href="#line">
       <svg aria-hidden="true"><use href="#i-line"/></svg>
-      <span>LINEで相談する<small>写真を送るだけでもOK・24時間受付</small></span>
+      <span>LINEで相談する<small>写真を送るだけでOK・24時間受付</small></span>
     </a>
   </section>
 
   <!-- ③ キービジュアル -->
   <section class="kv">
-    <img src="img/hero.jpg" alt="玄関先であいさつする男性と女性のスタッフ" width="1200" height="800">
-    <div class="kv-copy">
-      <h1><span class="nw">困ったら、</span><span class="nw">ここを押すだけ。</span></h1>
-      <p>町の便利屋がうかがいます。電球の交換から病院の付き添いまで。</p>
+    <div class="kv-photo">
+      <img src="img/hero.jpg" alt="玄関先であいさつする男性と女性のスタッフ" width="1200" height="800" fetchpriority="high">
+      <div class="kv-copy">
+        <span class="area-badge">東京23区 最短その日のうちに</span>
+        <h1><span class="nw">電球1個から、</span><span class="nw">おうちに</span><span class="nw">うかがいます。</span></h1>
+      </div>
     </div>
     <div class="facts">
-      <div class="fact"><b>5,500円</b>出張費こみ<br>1時間</div>
-      <div class="fact"><b>男女</b>スタッフを<br>選べます</div>
-      <div class="fact"><b>追加0円</b>作業後に<br>増えません</div>
+      <div class="fact"><b>5,500円</b>1時間<br>出張費こみ</div>
+      <div class="fact"><b>男性・女性</b>スタッフを<br>選べる</div>
+      <div class="fact"><b>追加0円</b>あとから<br>増えない</div>
+    </div>
+    <div class="can">
+      <p>たとえば、こんなことを頼めます</p>
+      <ul>
+        <li>電球の交換</li><li>家具の移動</li><li>組み立て</li><li>ゴミ出し</li><li>病院の付き添い</li><li>買い物</li><li>草むしり</li>
+      </ul>
     </div>
   </section>
 
@@ -419,9 +429,28 @@ details p { padding: 0 1rem 1rem 2.6rem; color: var(--muted); }
   </footer>
 </div>
 
-<nav class="fixed-bar" aria-label="いつでも相談">
+<nav class="fixed-bar is-hidden" id="fixed-bar" aria-label="いつでも相談">
   <div class="inner">
     <a class="btn btn-tel" href="tel:0120000000"><svg aria-hidden="true"><use href="#i-tel"/></svg>電話する</a>
     <a class="btn btn-line" href="#line"><svg aria-hidden="true"><use href="#i-line"/></svg>LINE</a>
   </div>
 </nav>
+
+<script>
+// 上の電話・LINEボタンが画面にある間は、下の固定バーを隠す
+(function () {
+  var bar = document.getElementById('fixed-bar');
+  var cta = document.getElementById('top-cta');
+  if (!('IntersectionObserver' in window)) { bar.classList.remove('is-hidden'); return; }
+  new IntersectionObserver(function (entries) {
+    bar.classList.toggle('is-hidden', entries[0].isIntersecting);
+  }).observe(cta);
+})();
+// 受付時間中かどうかを表示（東京の時刻で 9:00〜20:00）
+(function () {
+  var el = document.getElementById('status');
+  var h = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', hour: 'numeric', hour12: false }).format(new Date())) % 24;
+  if (h >= 9 && h < 20) { el.innerHTML = 'いま電話<br>受付中です'; }
+  else { el.classList.add('closed'); el.innerHTML = '受付は<br>9時〜20時'; }
+})();
+</script>
